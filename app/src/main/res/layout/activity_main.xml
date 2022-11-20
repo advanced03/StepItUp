@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/log"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50sp"
+        android:layout_marginTop="50sp"
+        android:layout_marginEnd="50sp"
+        android:layout_marginBottom="50sp"
+        android:gravity="center"
+        android:text="Log In"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/user"
+        android:layout_below="@id/login"
+        android:background="#50808080"
+        android:hint="Gebruikersnaam"
+        android:textColorHint="@color/white"
+        android:layout_margin="10sp"
+        android:padding="20sp"
+        android:drawableStart="@drawable/ic_baseline_person_outline_24"
+        android:drawablePadding="20sp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/password"
+        android:layout_below="@id/user"
+        android:background="#50808080"
+        android:hint="Wachtwoord"
+        android:textColorHint="@color/white"
+        android:layout_margin="10sp"
+        android:padding="20sp"
+        android:drawableStart="@drawable/ic_baseline_key_24"
+        android:drawablePadding="20sp"/>
+    
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginbtn"
+        android:layout_below="@id/password"
+        android:text="Log in"
+        android:backgroundTint="@color/design_default_color_primary"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20sp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginbtn"
+        android:id="@+id/wachtwoordvergeten"
+        android:text="Wachtwoord vergeten?"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="100sp"/>
+
+
+
+</RelativeLayout>
