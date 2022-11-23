@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/log"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
 
     <TextView
@@ -22,52 +22,74 @@
         android:textStyle="bold" />
 
     <EditText
+        android:id="@+id/user"
+        android:inputType="textEmailAddress"
+        android:textColor="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/user"
         android:layout_below="@id/login"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginEnd="10sp"
+        android:layout_marginBottom="10sp"
         android:background="#50808080"
-        android:hint="Gebruikersnaam"
-        android:textColorHint="@color/white"
-        android:layout_margin="10sp"
-        android:padding="20sp"
         android:drawableStart="@drawable/ic_baseline_person_outline_24"
-        android:drawablePadding="20sp"/>
+        android:drawablePadding="20sp"
+        android:hint="Gebruikersnaam"
+        android:padding="20sp"
+        android:textColorHint="@color/white" />
 
     <EditText
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/password"
         android:layout_below="@id/user"
+        android:layout_marginTop="10sp"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"
+        android:layout_marginBottom="10sp"
         android:background="#50808080"
-        android:hint="Wachtwoord"
-        android:textColorHint="@color/white"
-        android:layout_margin="10sp"
-        android:padding="20sp"
         android:drawableStart="@drawable/ic_baseline_key_24"
-        android:drawablePadding="20sp"/>
-    
+        android:drawablePadding="20sp"
+        android:hint="Wachtwoord"
+        android:inputType="textPassword"
+        android:padding="20sp"
+        android:textColorHint="@color/white"
+        android:textColor="#FFFFFF"/>
+
     <com.google.android.material.button.MaterialButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/loginbtn"
         android:layout_below="@id/password"
         android:text="Log in"
-        android:backgroundTint="@color/design_default_color_primary"
+        android:backgroundTint="@color/teal_700"
         android:layout_centerHorizontal="true"
         android:layout_margin="20sp"
         />
 
     <TextView
+        android:id="@+id/nopass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/loginbtn"
-        android:id="@+id/wachtwoordvergeten"
-        android:text="Wachtwoord vergeten?"
-        android:textColor="@color/white"
         android:layout_centerHorizontal="true"
-        android:layout_margin="100sp"/>
+        android:layout_marginStart="250sp"
+        android:layout_marginTop="50sp"
+        android:layout_marginEnd="250sp"
+        android:text="Wachtwoord vergeten?"
+        android:textColor="@color/white" />
 
-
-
+    <TextView
+        android:id="@+id/noacc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nopass"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="250sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="250sp"
+        android:layout_marginBottom="250sp"
+        android:text="Maak account aan"
+        android:textColor="@color/white" />
 </RelativeLayout>
