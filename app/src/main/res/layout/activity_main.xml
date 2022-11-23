@@ -58,15 +58,18 @@
         android:textColor="#FFFFFF"/>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/loginbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/loginbtn"
         android:layout_below="@id/password"
-        android:text="Log in"
-        android:backgroundTint="@color/teal_700"
         android:layout_centerHorizontal="true"
-        android:layout_margin="20sp"
-        />
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginEnd="20sp"
+        android:layout_marginBottom="20sp"
+        android:backgroundTint="@color/teal_700"
+        android:text="Log in"
+        app:cornerRadius="25px" />
 
     <TextView
         android:id="@+id/nopass"
@@ -78,7 +81,8 @@
         android:layout_marginTop="50sp"
         android:layout_marginEnd="250sp"
         android:text="Wachtwoord vergeten?"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/noacc"
@@ -91,5 +95,6 @@
         android:layout_marginEnd="250sp"
         android:layout_marginBottom="250sp"
         android:text="Maak account aan"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="16sp" />
 </RelativeLayout>
