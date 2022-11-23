@@ -63,17 +63,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/password"
         android:layout_centerHorizontal="true"
+        app:cornerRadius="30px"
         android:layout_marginStart="20sp"
         android:layout_marginTop="20sp"
         android:layout_marginEnd="20sp"
         android:layout_marginBottom="20sp"
-        android:backgroundTint="@color/teal_700"
+        android:backgroundTint="@color/material_dynamic_primary60"
         android:text="Log in"
-        app:cornerRadius="25px" />
+         />
 
     <TextView
         android:id="@+id/nopass"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/loginbtn"
         android:layout_centerHorizontal="true"
