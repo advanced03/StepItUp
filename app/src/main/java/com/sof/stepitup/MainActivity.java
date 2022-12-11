@@ -22,10 +22,7 @@ public class MainActivity extends AppCompatActivity {
         TextView username =(TextView) findViewById(R.id.user);
         TextView password =(TextView) findViewById(R.id.password);
 
-        MaterialButton loginbtn = (MaterialButton) findViewById(R.id.loginbtn);
-
         TextView createAccount = (TextView) findViewById(R.id.noacc);
-//        TextView loginThing = (TextView) findViewById(R.id.login);
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,19 +30,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        //admin and admin
 
-//        loginbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(username.getText().toString().equals("beheerder") && password.getText().toString().equals("beheerder")){
-//                    //correct
-//                    Toast.makeText(MainActivity.this,"Succesvol Ingelogd!",Toast.LENGTH_SHORT).show();
-//                }else
-//                    //incorrect
-//                    Toast.makeText(MainActivity.this,"Wachtwoord of gebruikersnaam fout!",Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        MaterialButton loginbtn = (MaterialButton) findViewById(R.id.loginbtn);
+        loginbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(username.getText().toString().equals("beheerder") && password.getText().toString().equals("beheerder")){
+                    //correct
+                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                }else
+                    //incorrect
+                    Toast.makeText(MainActivity.this,"Wachtwoord of gebruikersnaam fout!",Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
     }
