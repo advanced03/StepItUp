@@ -36,7 +36,5 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Wachtwoord of gebruikersnaam fout!",Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 }
