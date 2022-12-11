@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Step It Up!</string>
+    <string name="wachtwoord">Wachtwoord</string>
+    <string name="gebruikersnaam">Gebruikersnaam</string>
+    <string name="log_in">Log In</string>
+    <string name="help">Help</string>
 </resources>

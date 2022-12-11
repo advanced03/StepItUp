@@ -16,7 +16,7 @@
         android:layout_marginEnd="50sp"
         android:layout_marginBottom="50sp"
         android:gravity="center"
-        android:text="Log In"
+        android:text="@string/log_in"
         android:textColor="@color/white"
         android:textSize="35sp"
         android:textStyle="bold" />
@@ -35,7 +35,7 @@
         android:background="#50808080"
         android:drawableStart="@drawable/ic_baseline_person_outline_24"
         android:drawablePadding="20sp"
-        android:hint="Gebruikersnaam"
+        android:hint="@string/gebruikersnaam"
         android:padding="20sp"
         android:textColorHint="@color/white" />
 
@@ -51,7 +51,7 @@
         android:background="#50808080"
         android:drawableStart="@drawable/ic_baseline_key_24"
         android:drawablePadding="20sp"
-        android:hint="Wachtwoord"
+        android:hint="@string/wachtwoord"
         android:inputType="textPassword"
         android:padding="20sp"
         android:textColorHint="@color/white"
