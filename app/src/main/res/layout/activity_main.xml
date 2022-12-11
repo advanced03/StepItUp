@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/loginbtn"
         android:layout_below="@id/password"
-        android:text="Log in"
+        android:text="Login"
         android:backgroundTint="@color/teal_700"
         android:layout_centerHorizontal="true"
         android:layout_margin="20sp"

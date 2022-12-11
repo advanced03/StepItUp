@@ -22,7 +22,14 @@ public class MainActivity extends AppCompatActivity {
         TextView password =(TextView) findViewById(R.id.password);
 
         MaterialButton loginbtn = (MaterialButton) findViewById(R.id.loginbtn);
+        TextView createAccount = (TextView) findViewById(R.id.noacc);
 
+        createAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this,"Succesvol Ingelogd!",Toast.LENGTH_SHORT).show();
+            }
+        });
         //admin and admin
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
