@@ -67,10 +67,10 @@
     <EditText
         android:id="@+id/repeatPassword"
         android:layout_width="match_parent"
-        android:layout_marginStart="10sp"
-        android:layout_marginEnd="10sp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="10sp"
         android:background="#50808080"
         android:drawableStart="@drawable/ic_baseline_key_24"
         android:drawableEnd="@drawable/ic_baseline_casino_24"
@@ -100,11 +100,10 @@
         android:id="@+id/noacc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
         android:text="@string/heb_je_al_een_account_log_dan_in"
         android:textColor="@color/white"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginbtn" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createacc_btn"
+        app:layout_constraintVertical_bias="0.137"
+        tools:layout_editor_absoluteX="101dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
