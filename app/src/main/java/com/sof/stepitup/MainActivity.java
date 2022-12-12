@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(username.getText().toString().equals("beheerder") && password.getText().toString().equals("beheerder")){
                     //correct
-                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    Intent intent = new Intent(MainActivity.this, Home.class);
                     startActivity(intent);
                 }else
                     //incorrect
