@@ -56,7 +56,7 @@
         android:layout_marginBottom="10sp"
         android:background="#50808080"
         android:drawableStart="@drawable/ic_baseline_key_24"
-        android:drawableEnd="@drawable/ic_baseline_casino_24"
+        android:drawableEnd="@drawable/ic_baseline_remove_red_eye_24"
         android:drawablePadding="20sp"
         android:hint="@string/wachtwoord"
         android:inputType="textPassword"
