@@ -21,6 +21,8 @@
         android:textColor="@color/white"
         android:textSize="50sp"
         android:textStyle="bold"
+        android:shadowColor="@color/black"
+        android:shadowRadius="3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,7 +56,7 @@
         android:layout_marginBottom="10sp"
         android:background="#50808080"
         android:drawableStart="@drawable/ic_baseline_key_24"
-        android:drawableEnd="@drawable/ic_baseline_casino_24"
+        android:drawableEnd="@drawable/ic_baseline_remove_red_eye_24"
         android:drawablePadding="20sp"
         android:hint="@string/wachtwoord"
         android:inputType="textPassword"
@@ -73,10 +75,11 @@
         android:layout_marginEnd="10sp"
         android:background="#50808080"
         android:drawableStart="@drawable/ic_baseline_key_24"
-        android:drawableEnd="@drawable/ic_baseline_casino_24"
+        android:drawableEnd="@drawable/ic_baseline_remove_red_eye_24"
         android:drawablePadding="20sp"
         android:hint="@string/herhaal_wachtwoord"
         android:inputType="textPassword"
+        app:passwordToggleEnabled="true"
         android:padding="20sp"
         android:textColor="#FFFFFF"
         android:textColorHint="@color/white"
@@ -97,7 +100,7 @@
         android:id="@+id/createacc_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#F44336"
+        android:backgroundTint="#4CAF50"
         android:text="@string/maak_account"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -106,13 +109,15 @@
 
     <TextView
         android:id="@+id/hasacc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:shadowColor="@color/black"
+        android:shadowRadius="3"
         android:text="Al een account? Log In!"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createacc_btn"
-        app:layout_constraintVertical_bias="0.137" />
+        app:layout_constraintTop_toBottomOf="@+id/createacc_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
