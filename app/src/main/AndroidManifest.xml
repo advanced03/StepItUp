@@ -25,6 +25,9 @@
             android:name=".Home">
         </activity>
         <activity
+            android:name=".News">
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
