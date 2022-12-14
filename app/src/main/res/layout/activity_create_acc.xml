@@ -2,22 +2,22 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/relativeLayout2"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/login"
+        android:id="@+id/maakacctxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50sp"
+        android:layout_marginStart="25sp"
         android:layout_marginTop="60sp"
-        android:layout_marginEnd="50sp"
+        android:layout_marginEnd="25sp"
         android:layout_marginBottom="50sp"
         android:gravity="center"
-        android:text="@string/log_in"
+        android:text="@string/maak_account_aan"
         android:textColor="@color/white"
         android:textSize="50sp"
         android:textStyle="bold"
@@ -27,11 +27,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/user"
+        android:id="@+id/newuser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10sp"
-        android:layout_marginTop="75sp"
+        android:layout_marginTop="50sp"
         android:layout_marginEnd="10sp"
         android:layout_marginBottom="10sp"
         android:background="#50808080"
@@ -44,10 +44,10 @@
         android:textColor="#FFFFFF"
         android:textColorHint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login" />
+        app:layout_constraintTop_toBottomOf="@id/maakacctxt" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/newpassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10sp"
@@ -64,7 +64,27 @@
         android:textColor="#FFFFFF"
         android:textColorHint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/user" />
+        app:layout_constraintTop_toBottomOf="@id/newuser" />
+
+    <EditText
+        android:id="@+id/repeatPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="10sp"
+        android:background="#50808080"
+        android:drawableStart="@drawable/ic_baseline_key_24"
+        android:drawableEnd="@drawable/ic_baseline_remove_red_eye_24"
+        android:drawablePadding="20sp"
+        android:hint="@string/herhaal_wachtwoord"
+        android:inputType="textPassword"
+        app:passwordToggleEnabled="true"
+        android:padding="20sp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newpassword" />
 
     <ProgressBar
         android:id="@+id/progress"
@@ -73,36 +93,31 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/repeatPassword"
         />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/loginbtn"
+        android:id="@+id/createacc_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="175sp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginBottom="20sp"
         android:backgroundTint="#4CAF50"
-        android:text="@string/log_in"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
-
-    <TextView
-        android:id="@+id/noacc"
-        android:layout_width="195dp"
-        android:layout_height="85dp"
-        android:gravity="center"
-        android:shadowColor="@color/black"
-        android:shadowRadius="3"
-        android:text="@string/maak_account_aan"
-        android:textColor="@color/white"
-        android:textSize="15sp"
+        android:text="@string/maak_account"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginbtn"
-        app:layout_constraintVertical_bias="0.818" />
+        app:layout_constraintTop_toBottomOf="@+id/progress" />
+
+    <TextView
+        android:id="@+id/hasacc"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:shadowColor="@color/black"
+        android:shadowRadius="3"
+        android:text="Al een account? Log In!"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createacc_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
