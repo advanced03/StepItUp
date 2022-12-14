@@ -62,7 +62,7 @@ public class CreateAcc extends AppCompatActivity {
                             data[1] = passwordId.getText().toString();
                             data[2] = repeatId.getText().toString();
 
-                            PutData putData = new PutData("http://145.52.154.18/stepitup/signup.php", "POST", field, data); //HIER MOET ZEKER JE EIGEN PRIVE IP ADRES ZITTEN IN PLAATS VAN MIJN (JORDI'S IP)
+                            PutData putData = new PutData("http://145.52.131.204/stepitup/signup.php", "POST", field, data); //HIER MOET ZEKER JE EIGEN PRIVE IP ADRES ZITTEN IN PLAATS VAN MIJN (JORDI'S IP)
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {
                                     progressBar.setVisibility(View.GONE);
