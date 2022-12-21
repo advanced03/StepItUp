@@ -58,7 +58,11 @@ public class MainActivity extends AppCompatActivity {
                             data[0] = username.getText().toString();
                             data[1] = password.getText().toString();
 
+<<<<<<< HEAD
                             PutData putData = new PutData("http://145.52.144.179/stepitup/login.php", "POST", field, data); //HIER MOET ZEKER JE EIGEN PRIVE IP ADRES ZITTEN IN PLAATS VAN MIJN (JORDI'S IP)
+=======
+                            PutData putData = new PutData("http://145.52.154.18/stepitup/login.php", "POST", field, data); //HIER MOET ZEKER JE EIGEN PRIVE IP ADRES ZITTEN IN PLAATS VAN MIJN (JORDI'S IP)
+>>>>>>> iso
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {
                                     progressBar.setVisibility(View.GONE);
