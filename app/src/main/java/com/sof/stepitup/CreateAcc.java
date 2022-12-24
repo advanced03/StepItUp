@@ -50,8 +50,6 @@ public class CreateAcc extends AppCompatActivity {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            //Starting Write and Read data with URL
-                            //Creating array for parameters
                             String[] field = new String[4];
                             field[0] = "username";
                             field[1] = "password";

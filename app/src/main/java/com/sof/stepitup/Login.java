@@ -16,6 +16,7 @@ import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
 public class Login extends AppCompatActivity {
 //REMINDER: SESSIONS KUNNEN GEMAAKT WORDEN VOOR ONTHOUDEN VAN LOGINS
+//Wireless LAN adapter Local Area Connection IP via hotspot
     public static String ip = "192.168.137.1";
 
     @Override
@@ -59,7 +60,7 @@ public class Login extends AppCompatActivity {
                             data[0] = username.getText().toString();
                             data[1] = password.getText().toString();
 
-                            PutData putData = new PutData("http://"+ ip +"/stepitup/login.php", "POST", field, data); //HIER MOET ZEKER JE EIGEN PRIVE IP ADRES ZITTEN IN PLAATS VAN MIJN (JORDI'S IP)
+                            PutData putData = new PutData("http://"+ ip +"/stepitup/login.php", "POST", field, data);
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {
                                     progressBar.setVisibility(View.GONE);
