@@ -6,18 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
-import com.vishnusivadas.advanced_httpurlconnection.FetchData;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
 public class CreateAcc extends AppCompatActivity {
-
+    public static String ip = "192.168.137.1";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +25,7 @@ public class CreateAcc extends AppCompatActivity {
         hasAccountText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateAcc.this, MainActivity.class);
+                Intent intent = new Intent(CreateAcc.this, Login.class);
                 startActivity(intent);
                 finish();
             }
@@ -36,6 +34,7 @@ public class CreateAcc extends AppCompatActivity {
         TextView usernameId =(TextView) findViewById(R.id.newuser);
         TextView passwordId =(TextView) findViewById(R.id.newpassword);
         TextView repeatId =(TextView) findViewById(R.id.repeatPassword);
+        TextView emailId =(TextView) findViewById(R.id.email);
 
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress);
 
@@ -52,23 +51,26 @@ public class CreateAcc extends AppCompatActivity {
                         public void run() {
                             //Starting Write and Read data with URL
                             //Creating array for parameters
-                            String[] field = new String[3];
+                            String[] field = new String[4];
                             field[0] = "username";
                             field[1] = "password";
                             field[2] = "repeatPassword";
+                            field[3] = "email";
+
                             //Creating array for data
-                            String[] data = new String[3];
+                            String[] data = new String[4];
                             data[0] = usernameId.getText().toString();
                             data[1] = passwordId.getText().toString();
                             data[2] = repeatId.getText().toString();
+                            data[3] = emailId.getText().toString();
 
-                            PutData putData = new PutData("http://145.52.154.18/stepitup/signup.php", "POST", field, data); //HIER MOET ZEKER JE EIGEN PRIVE IP ADRES ZITTEN IN PLAATS VAN MIJN (JORDI'S IP)
+                            PutData putData = new PutData("http://"+ ip +"/stepitup/signup.php", "POST", field, data);
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {
                                     progressBar.setVisibility(View.GONE);
                                     String result = putData.getResult();
                                     if (result.equals("Success!")) {
-                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        Intent intent = new Intent(getApplicationContext(), Login.class);
                                         startActivity(intent);
                                         finish();
                                     }

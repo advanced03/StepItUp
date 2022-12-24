@@ -14,15 +14,16 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
-public class MainActivity extends AppCompatActivity {
+public class Login extends AppCompatActivity {
 //REMINDER: SESSIONS KUNNEN GEMAAKT WORDEN VOOR ONTHOUDEN VAN LOGINS
+    public static String ip = "192.168.137.1";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress);
-        TextView logintxt = (TextView) findViewById(R.id.login);
         TextView username =(TextView) findViewById(R.id.user);
         TextView password =(TextView) findViewById(R.id.password);
         TextView createAccount = (TextView) findViewById(R.id.noacc);
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                Toast.makeText(getBaseContext(),"Workdskfsndf",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, CreateAcc.class);
+                Intent intent = new Intent(Login.this, CreateAcc.class);
                 startActivity(intent);
                 finish();
             }
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                             data[0] = username.getText().toString();
                             data[1] = password.getText().toString();
 
-                            PutData putData = new PutData("http://145.52.154.18/stepitup/login.php", "POST", field, data); //HIER MOET ZEKER JE EIGEN PRIVE IP ADRES ZITTEN IN PLAATS VAN MIJN (JORDI'S IP)
+                            PutData putData = new PutData("http://"+ ip +"/stepitup/login.php", "POST", field, data); //HIER MOET ZEKER JE EIGEN PRIVE IP ADRES ZITTEN IN PLAATS VAN MIJN (JORDI'S IP)
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {
                                     progressBar.setVisibility(View.GONE);

@@ -8,4 +8,5 @@
     <string name="herhaal_wachtwoord">Herhaal wachtwoord</string>
     <string name="maak_account">Maak account</string>
     <string name="heb_je_al_een_account_log_dan_in">Heb je al een account? log dan in!</string>
+    <string name="emailadres">Emailadres</string>
 </resources>
