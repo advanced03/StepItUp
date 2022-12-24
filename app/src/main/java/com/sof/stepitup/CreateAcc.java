@@ -15,6 +15,7 @@ import com.google.android.material.button.MaterialButton;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
 public class CreateAcc extends AppCompatActivity {
+    //Wireless LAN adapter Local Area Connection IP via hotspot
     public static String ip = "192.168.137.1";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
