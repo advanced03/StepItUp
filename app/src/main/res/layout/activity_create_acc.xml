@@ -91,10 +91,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/repeatPassword"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/repeatPassword" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/createacc_btn"
@@ -120,4 +118,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createacc_btn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

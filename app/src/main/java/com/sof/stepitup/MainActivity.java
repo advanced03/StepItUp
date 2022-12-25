@@ -1,25 +1,44 @@
 package com.sof.stepitup;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.navigation.NavigationBarView;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
-public class MainActivity extends AppCompatActivity {
-//REMINDER: SESSIONS KUNNEN GEMAAKT WORDEN VOOR ONTHOUDEN VAN LOGINS
+public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
+
+    BottomNavigationView bottomNavigationView;
+    TextView textTabName;
+
+
+
+    //REMINDER: SESSIONS KUNNEN GEMAAKT WORDEN VOOR ONTHOUDEN VAN LOGINS
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        textTabName = findViewById(R.id.text_tab_name);
+
+        bottomNavigationView.setOnItemSelectedListener(this);
+
+
 
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress);
         TextView logintxt = (TextView) findViewById(R.id.login);
@@ -58,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                             data[0] = username.getText().toString();
                             data[1] = password.getText().toString();
 
-                            PutData putData = new PutData("http://145.52.163.20/stepitup/login.php", "POST", field, data); //HIER MOET ZEKER JE EIGEN PRIVE IP ADRES ZITTEN IN PLAATS VAN MIJN (JORDI'S IP)
+                            PutData putData = new PutData("http://143.177.30.40/stepitup/login.php", "POST", field, data); //HIER MOET ZEKER JE EIGEN PRIVE IP ADRES ZITTEN IN PLAATS VAN MIJN (JORDI'S IP)
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {
                                     progressBar.setVisibility(View.GONE);
@@ -82,5 +101,37 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.menu_home:
+
+                textTabName.setText(item.getTitle());
+
+                break;
+
+
+            case R.id.menu_dashboard:
+
+                textTabName.setText(item.getTitle());
+
+                break;
+
+
+            case R.id.menu_notification:
+
+                textTabName.setText(item.getTitle());
+
+                break;
+        }
+
+        return true;
+    }
+    private void showNotificationIndicator(){
+
     }
 }
