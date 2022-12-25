@@ -2,10 +2,11 @@
     <string name="app_name">Step It Up!</string>
     <string name="wachtwoord">Wachtwoord</string>
     <string name="gebruikersnaam">Gebruikersnaam</string>
-    <string name="log_in">Log In</string>
+    <string name="log_in">Log in</string>
     <string name="help">Help</string>
     <string name="maak_account_aan">Maak account aan</string>
     <string name="herhaal_wachtwoord">Herhaal wachtwoord</string>
     <string name="maak_account">Maak account</string>
     <string name="heb_je_al_een_account_log_dan_in">Heb je al een account? log dan in!</string>
+    <string name="emailadres">Emailadres</string>
 </resources>

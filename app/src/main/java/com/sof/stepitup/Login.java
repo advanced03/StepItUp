@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -14,15 +15,17 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
-public class MainActivity extends AppCompatActivity {
+public class Login extends AppCompatActivity {
 //REMINDER: SESSIONS KUNNEN GEMAAKT WORDEN VOOR ONTHOUDEN VAN LOGINS
+//Wireless LAN adapter Local Area Connection IP via hotspot
+    public static String ip = "192.168.137.1";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress);
-        TextView logintxt = (TextView) findViewById(R.id.login);
         TextView username =(TextView) findViewById(R.id.user);
         TextView password =(TextView) findViewById(R.id.password);
         TextView createAccount = (TextView) findViewById(R.id.noacc);
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                Toast.makeText(getBaseContext(),"Workdskfsndf",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, CreateAcc.class);
+                Intent intent = new Intent(Login.this, CreateAcc.class);
                 startActivity(intent);
                 finish();
             }
@@ -57,32 +60,32 @@ public class MainActivity extends AppCompatActivity {
                             String[] data = new String[2];
                             data[0] = username.getText().toString();
                             data[1] = password.getText().toString();
-
-<<<<<<< HEAD
-                            PutData putData = new PutData("http://145.52.144.179/stepitup/login.php", "POST", field, data); //HIER MOET ZEKER JE EIGEN PRIVE IP ADRES ZITTEN IN PLAATS VAN MIJN (JORDI'S IP)
-=======
-                            PutData putData = new PutData("http://145.52.154.18/stepitup/login.php", "POST", field, data); //HIER MOET ZEKER JE EIGEN PRIVE IP ADRES ZITTEN IN PLAATS VAN MIJN (JORDI'S IP)
->>>>>>> iso
-                            if (putData.startPut()) {
-                                if (putData.onComplete()) {
-                                    progressBar.setVisibility(View.GONE);
-                                    String result = putData.getResult();
-                                    if (result.equals("Welkom!")) {
-                                        Intent intent = new Intent(getApplicationContext(), Home.class);
-                                        startActivity(intent);
-                                        finish();
-                                    }
-                                    else {
-                                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+//                            try {
+                            PutData putData = new PutData("http://"+ ip +"/stepitup/login.php", "POST", field, data);
+                                if (putData.startPut()) {
+                                    if (putData.onComplete()) {
+                                        progressBar.setVisibility(View.GONE);
+                                        String result = putData.getResult();
+                                        if (result.equals("Welkom!")) {
+                                            Intent intent = new Intent(getApplicationContext(), Home.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                        else {
+                                            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                                        }
                                     }
                                 }
-                            }
+//                            }
+//                            catch(Exception error1) {
+//                                error1.printStackTrace();
+//                            }
                             //End Write and Read data with URL
                         }
                     });
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "Iets is fout gegaan...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Vul alles in aub", Toast.LENGTH_SHORT).show();
                 }
             }
         });
