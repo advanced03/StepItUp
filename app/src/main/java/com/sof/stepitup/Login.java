@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -59,28 +60,32 @@ public class Login extends AppCompatActivity {
                             String[] data = new String[2];
                             data[0] = username.getText().toString();
                             data[1] = password.getText().toString();
-
+//                            try {
                             PutData putData = new PutData("http://"+ ip +"/stepitup/login.php", "POST", field, data);
-                            if (putData.startPut()) {
-                                if (putData.onComplete()) {
-                                    progressBar.setVisibility(View.GONE);
-                                    String result = putData.getResult();
-                                    if (result.equals("Welkom!")) {
-                                        Intent intent = new Intent(getApplicationContext(), Home.class);
-                                        startActivity(intent);
-                                        finish();
-                                    }
-                                    else {
-                                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                                if (putData.startPut()) {
+                                    if (putData.onComplete()) {
+                                        progressBar.setVisibility(View.GONE);
+                                        String result = putData.getResult();
+                                        if (result.equals("Welkom!")) {
+                                            Intent intent = new Intent(getApplicationContext(), Home.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                        else {
+                                            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                                        }
                                     }
                                 }
-                            }
+//                            }
+//                            catch(Exception error1) {
+//                                error1.printStackTrace();
+//                            }
                             //End Write and Read data with URL
                         }
                     });
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "Iets is fout gegaan...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Vul alles in aub", Toast.LENGTH_SHORT).show();
                 }
             }
         });

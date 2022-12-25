@@ -82,7 +82,7 @@ public class CreateAcc extends AppCompatActivity {
                     });
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "work bitsh", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Vul alles in aub", Toast.LENGTH_SHORT).show();
                 }
             }
         });
