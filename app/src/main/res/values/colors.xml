@@ -9,9 +9,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    //haal onder weg als niet werkt
-    <item name="windowActionBAR" type="font">false</item>
-    <item name="windowsNoTitle" type="font">true</item>
 
 
 </resources>

@@ -19,11 +19,10 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
-public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity { //implements NavigationBarView.OnItemSelectedListener {
 
-    BottomNavigationView bottomNavigationView;
-    TextView textTabName;
-
+//    BottomNavigationView bottomNavigationView;
+//    TextView textTabName;
 
 
     //REMINDER: SESSIONS KUNNEN GEMAAKT WORDEN VOOR ONTHOUDEN VAN LOGINS
@@ -33,17 +32,16 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-        textTabName = findViewById(R.id.text_tab_name);
-
-        bottomNavigationView.setOnItemSelectedListener(this);
-
+//        bottomNavigationView = findViewById(R.id.bottom_navigation);
+//        textTabName = findViewById(R.id.text_tab_name);
+//
+//        bottomNavigationView.setOnItemSelectedListener(this);
 
 
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress);
         TextView logintxt = (TextView) findViewById(R.id.login);
-        TextView username =(TextView) findViewById(R.id.user);
-        TextView password =(TextView) findViewById(R.id.password);
+        TextView username = (TextView) findViewById(R.id.user);
+        TextView password = (TextView) findViewById(R.id.password);
         TextView createAccount = (TextView) findViewById(R.id.noacc);
 
         createAccount.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                 if (!username.getText().toString().equals("") && !password.getText().toString().equals("")) {
 //                    progressBar.setVisibility(View.VISIBLE);
                     //Start ProgressBar first (Set visibility VISIBLE)
+
                     Handler handler = new Handler(Looper.getMainLooper());
                     handler.post(new Runnable() {
                         @Override
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                             data[0] = username.getText().toString();
                             data[1] = password.getText().toString();
 
-                            PutData putData = new PutData("http://143.177.30.40/stepitup/login.php", "POST", field, data); //HIER MOET ZEKER JE EIGEN PRIVE IP ADRES ZITTEN IN PLAATS VAN MIJN (JORDI'S IP)
+                            PutData putData = new PutData("http://192.168.1.136/stepitup/login.php", "POST", field, data); //HIER MOET ZEKER JE EIGEN PRIVE IP ADRES ZITTEN IN PLAATS VAN MIJN (JORDI'S IP)
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {
                                     progressBar.setVisibility(View.GONE);
@@ -86,8 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                                         Intent intent = new Intent(getApplicationContext(), Home.class);
                                         startActivity(intent);
                                         finish();
-                                    }
-                                    else {
+                                    } else {
                                         Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -95,43 +93,43 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                             //End Write and Read data with URL
                         }
                     });
-                }
-                else {
+                } else {
                     Toast.makeText(getApplicationContext(), "Iets is fout gegaan...", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-        switch (item.getItemId()) {
-
-            case R.id.menu_home:
-
-                textTabName.setText(item.getTitle());
-
-                break;
-
-
-            case R.id.menu_dashboard:
-
-                textTabName.setText(item.getTitle());
-
-                break;
-
-
-            case R.id.menu_notification:
-
-                textTabName.setText(item.getTitle());
-
-                break;
-        }
-
-        return true;
-    }
-    private void showNotificationIndicator(){
-
-    }
 }
+
+//    @Override
+//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//
+//        switch (item.getItemId()) {
+//
+//            case R.id.menu_home:
+//
+//                textTabName.setText(item.getTitle());
+//
+//                break;
+//
+//
+//            case R.id.menu_dashboard:
+//
+//                textTabName.setText(item.getTitle());
+//
+//                break;
+//
+//
+//            case R.id.menu_notification:
+//
+//                textTabName.setText(item.getTitle());
+//
+//                break;
+//        }
+//
+//        return true;
+//    }
+//    private void showNotificationIndicator(){
+//
+//    }
+//}
