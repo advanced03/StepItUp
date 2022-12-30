@@ -60,8 +60,8 @@ public class Login extends AppCompatActivity {
                             field[1] = "password";
                             //Creating array for data
                             String[] data = new String[2];
-                            data[0] = username.getText().toString().trim();
-                            data[1] = password.getText().toString().trim();
+                            data[0] = username.getText().toString();
+                            data[1] = password.getText().toString();
 //                            try {
                             PutData putData = new PutData("http://"+ ip +"/stepitup/login.php", "POST", field, data);
                                 if (putData.startPut()) {

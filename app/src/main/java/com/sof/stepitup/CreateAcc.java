@@ -60,10 +60,10 @@ public class CreateAcc extends AppCompatActivity {
 
                             //Creating array for data
                             String[] data = new String[4];
-                            data[0] = usernameId.getText().toString().trim();
-                            data[1] = passwordId.getText().toString().trim();
-                            data[2] = repeatId.getText().toString().trim();
-                            data[3] = emailId.getText().toString().trim();
+                            data[0] = usernameId.getText().toString();
+                            data[1] = passwordId.getText().toString();
+                            data[2] = repeatId.getText().toString();
+                            data[3] = emailId.getText().toString();
 //                            Toast.makeText(getApplicationContext(), data[3], Toast.LENGTH_SHORT).show();
                             PutData putData = new PutData("http://"+ ip +"/stepitup/signup.php", "POST", field, data);
                             if (putData.startPut()) {
