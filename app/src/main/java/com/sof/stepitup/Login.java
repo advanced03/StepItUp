@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
 public class Login extends AppCompatActivity {
@@ -26,8 +28,8 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress);
-        TextView username =(TextView) findViewById(R.id.user);
-        TextView password =(TextView) findViewById(R.id.password);
+        TextInputLayout username =(TextInputLayout) findViewById(R.id.user);
+        TextInputLayout password =(TextInputLayout) findViewById(R.id.password);
         TextView createAccount = (TextView) findViewById(R.id.noacc);
 
         createAccount.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +46,7 @@ public class Login extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!username.getText().toString().equals("") && !password.getText().toString().equals("")) {
+                if (!username.getEditText().toString().equals("") && !password.getEditText().toString().equals("")) {
 //                    progressBar.setVisibility(View.VISIBLE);
                     //Start ProgressBar first (Set visibility VISIBLE)
                     Handler handler = new Handler(Looper.getMainLooper());
@@ -58,8 +60,8 @@ public class Login extends AppCompatActivity {
                             field[1] = "password";
                             //Creating array for data
                             String[] data = new String[2];
-                            data[0] = username.getText().toString();
-                            data[1] = password.getText().toString();
+                            data[0] = username.getEditText().toString();
+                            data[1] = password.getEditText().toString();
 //                            try {
                             PutData putData = new PutData("http://"+ ip +"/stepitup/login.php", "POST", field, data);
                                 if (putData.startPut()) {

@@ -12,11 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputLayout;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
 public class CreateAcc extends AppCompatActivity {
     //Wireless LAN adapter Local Area Connection IP via hotspot
-    public static String ip = "192.168.137.1";
+    public static String ip = "192.168.1.96";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,10 +33,10 @@ public class CreateAcc extends AppCompatActivity {
             }
         });
 
-        TextView usernameId =(TextView) findViewById(R.id.newuser);
-        TextView passwordId =(TextView) findViewById(R.id.newpassword);
-        TextView repeatId =(TextView) findViewById(R.id.repeatPassword);
-        TextView emailId =(TextView) findViewById(R.id.email);
+        TextInputLayout usernameId =(TextInputLayout) findViewById(R.id.newuser);
+        TextInputLayout passwordId =(TextInputLayout) findViewById(R.id.newpassword);
+        TextInputLayout repeatId =(TextInputLayout) findViewById(R.id.repeatPassword);
+        TextInputLayout emailId =(TextInputLayout) findViewById(R.id.email);
 
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress);
 
@@ -43,7 +44,7 @@ public class CreateAcc extends AppCompatActivity {
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!usernameId.getText().toString().equals("") && !passwordId.getText().toString().equals("") && !repeatId.getText().toString().equals("")) {
+                if (!usernameId.getEditText().toString().equals("") && !passwordId.getEditText().toString().equals("") && !repeatId.getEditText().toString().equals("")) {
                     progressBar.setVisibility(View.VISIBLE);
                     //Start ProgressBar first (Set visibility VISIBLE)
                     Handler handler = new Handler(Looper.getMainLooper());
@@ -58,10 +59,10 @@ public class CreateAcc extends AppCompatActivity {
 
                             //Creating array for data
                             String[] data = new String[4];
-                            data[0] = usernameId.getText().toString();
-                            data[1] = passwordId.getText().toString();
-                            data[2] = repeatId.getText().toString();
-                            data[3] = emailId.getText().toString();
+                            data[0] = usernameId.getEditText().toString();
+                            data[1] = passwordId.getEditText().toString();
+                            data[2] = repeatId.getEditText().toString();
+                            data[3] = emailId.getEditText().toString();
 
                             PutData putData = new PutData("http://"+ ip +"/stepitup/signup.php", "POST", field, data);
                             if (putData.startPut()) {
