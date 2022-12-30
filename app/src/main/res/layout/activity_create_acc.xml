@@ -38,6 +38,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/maakacctxt">
     <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/usernametxt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#50808080"
@@ -61,6 +62,7 @@
         android:hint="E-mail adres"
         app:layout_constraintTop_toBottomOf="@id/newuser">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailtxt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#50808080"
@@ -86,6 +88,7 @@
             app:passwordToggleTint="@color/white"
             app:layout_constraintTop_toBottomOf="@id/email">
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordtxt"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#50808080"
@@ -110,6 +113,7 @@
         android:hint="@string/herhaal_wachtwoord"
         app:layout_constraintTop_toBottomOf="@+id/newpassword">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/repeattxt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#50808080"

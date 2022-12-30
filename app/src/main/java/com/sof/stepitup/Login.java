@@ -20,7 +20,7 @@ import com.vishnusivadas.advanced_httpurlconnection.PutData;
 public class Login extends AppCompatActivity {
 //REMINDER: SESSIONS KUNNEN GEMAAKT WORDEN VOOR ONTHOUDEN VAN LOGINS
 //Wireless LAN adapter Local Area Connection IP via hotspot
-    public static String ip = "192.168.137.1";
+    public static String ip = "192.168.2.12";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +28,8 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress);
-        TextInputLayout username =(TextInputLayout) findViewById(R.id.user);
-        TextInputLayout password =(TextInputLayout) findViewById(R.id.password);
+        TextInputEditText username =(TextInputEditText) findViewById(R.id.usertxt);
+        TextInputEditText password =(TextInputEditText) findViewById(R.id.passwordtxt);
         TextView createAccount = (TextView) findViewById(R.id.noacc);
 
         createAccount.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +46,7 @@ public class Login extends AppCompatActivity {
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!username.getEditText().toString().equals("") && !password.getEditText().toString().equals("")) {
+                if (!username.getText().toString().equals("") && !password.getText().toString().equals("")) {
 //                    progressBar.setVisibility(View.VISIBLE);
                     //Start ProgressBar first (Set visibility VISIBLE)
                     Handler handler = new Handler(Looper.getMainLooper());
@@ -60,8 +60,8 @@ public class Login extends AppCompatActivity {
                             field[1] = "password";
                             //Creating array for data
                             String[] data = new String[2];
-                            data[0] = username.getEditText().toString();
-                            data[1] = password.getEditText().toString();
+                            data[0] = username.getText().toString().trim();
+                            data[1] = password.getText().toString().trim();
 //                            try {
                             PutData putData = new PutData("http://"+ ip +"/stepitup/login.php", "POST", field, data);
                                 if (putData.startPut()) {
