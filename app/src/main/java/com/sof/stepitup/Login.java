@@ -2,32 +2,40 @@ package com.sof.stepitup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
+import android.se.omapi.Session;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.sof.stepitup.session.SessionManager;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Login extends AppCompatActivity {
-//REMINDER: SESSIONS KUNNEN GEMAAKT WORDEN VOOR ONTHOUDEN VAN LOGINS
-//Wireless LAN adapter Local Area Connection IP via hotspot
-    public static String ip = "192.168.137.1";
+    //Wireless LAN adapter Local Area Connection IP via hotspot
+    //Jordi's ethernet 192.168.2.12
+    // ctrl alt L == reformat code
+    public static final String ip = "192.168.2.12";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
+        SessionManager sessionManager = new SessionManager(getApplicationContext());
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress);
-        TextView username =(TextView) findViewById(R.id.user);
-        TextView password =(TextView) findViewById(R.id.password);
+        TextView username = (TextView) findViewById(R.id.user);
+        TextView password = (TextView) findViewById(R.id.password);
         TextView createAccount = (TextView) findViewById(R.id.noacc);
 
         createAccount.setOnClickListener(new View.OnClickListener() {
@@ -61,21 +69,31 @@ public class Login extends AppCompatActivity {
                             data[0] = username.getText().toString();
                             data[1] = password.getText().toString();
 //                            try {
-                            PutData putData = new PutData("http://"+ ip +"/stepitup/login.php", "POST", field, data);
-                                if (putData.startPut()) {
-                                    if (putData.onComplete()) {
-                                        progressBar.setVisibility(View.GONE);
-                                        String result = putData.getResult();
-                                        if (result.equals("Welkom!")) {
+                            PutData putData = new PutData("http://" + ip + "/stepitup/login.php", "POST", field, data);
+                            if (putData.startPut()) {
+                                if (putData.onComplete()) {
+                                    progressBar.setVisibility(View.GONE);
+                                    String result = putData.getResult();
+                                    if (!result.equals("Helaas is de combinatie onjuist")) {
+                                        try {
+                                            JSONObject user = new JSONObject(result);
+                                            String userId = user.getString("gebruiker_ID");
+                                            String username = user.getString("gebruikersnaam");
+                                            String email = user.getString("email");
+                                            sessionManager.createLoginSession(Integer.parseInt(userId), username, email);
                                             Intent intent = new Intent(getApplicationContext(), Home.class);
                                             startActivity(intent);
                                             finish();
+//                                                Toast.makeText(getApplicationContext(), user.getString("gebruiker_ID"), Toast.LENGTH_SHORT).show();
+
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
                                         }
-                                        else {
-                                            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                                        }
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                                     }
                                 }
+                            }
 //                            }
 //                            catch(Exception error1) {
 //                                error1.printStackTrace();
@@ -83,8 +101,7 @@ public class Login extends AppCompatActivity {
                             //End Write and Read data with URL
                         }
                     });
-                }
-                else {
+                } else {
                     Toast.makeText(getApplicationContext(), "Vul alles in aub", Toast.LENGTH_SHORT).show();
                 }
             }

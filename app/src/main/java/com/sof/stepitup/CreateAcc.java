@@ -16,7 +16,8 @@ import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
 public class CreateAcc extends AppCompatActivity {
     //Wireless LAN adapter Local Area Connection IP via hotspot
-    public static String ip = "192.168.137.1";
+    //Jordi's ethernet 192.168.2.12
+    public static final String ip = "192.168.2.12";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
