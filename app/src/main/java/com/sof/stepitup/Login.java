@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.sof.stepitup.session.SessionManager;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
@@ -34,8 +36,8 @@ public class Login extends AppCompatActivity {
 
         SessionManager sessionManager = new SessionManager(getApplicationContext());
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress);
-        TextView username = (TextView) findViewById(R.id.user);
-        TextView password = (TextView) findViewById(R.id.password);
+        TextInputEditText username =(TextInputEditText) findViewById(R.id.usertxt);
+        TextInputEditText password =(TextInputEditText) findViewById(R.id.passwordtxt);
         TextView createAccount = (TextView) findViewById(R.id.noacc);
 
         createAccount.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +103,8 @@ public class Login extends AppCompatActivity {
                             //End Write and Read data with URL
                         }
                     });
-                } else {
+                }
+                else {
                     Toast.makeText(getApplicationContext(), "Vul alles in aub", Toast.LENGTH_SHORT).show();
                 }
             }

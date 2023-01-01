@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
 public class CreateAcc extends AppCompatActivity {
@@ -22,7 +24,7 @@ public class CreateAcc extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_acc);
-        TextView maakAccTxt = (TextView) findViewById(R.id.maakacctxt);
+//        TextView maakAccTxt = (TextView) findViewById(R.id.maakacctxt);
         TextView hasAccountText =(TextView) findViewById(R.id.hasacc);
         hasAccountText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,10 +35,10 @@ public class CreateAcc extends AppCompatActivity {
             }
         });
 
-        TextView usernameId =(TextView) findViewById(R.id.newuser);
-        TextView passwordId =(TextView) findViewById(R.id.newpassword);
-        TextView repeatId =(TextView) findViewById(R.id.repeatPassword);
-        TextView emailId =(TextView) findViewById(R.id.email);
+        TextInputEditText usernameId =(TextInputEditText) findViewById(R.id.usernametxt);
+        TextInputEditText passwordId =(TextInputEditText) findViewById(R.id.passwordtxt);
+        TextInputEditText repeatId =(TextInputEditText) findViewById(R.id.repeattxt);
+        TextInputEditText emailId =(TextInputEditText) findViewById(R.id.emailtxt);
 
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress);
 
