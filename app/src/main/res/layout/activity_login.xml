@@ -26,42 +26,59 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+<!--    <EditText
+        android:textColor="#FFFFFF"
+        android:textColorHint="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+         />-->
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10sp"
         android:layout_marginTop="75sp"
         android:layout_marginEnd="10sp"
-        android:layout_marginBottom="10sp"
-        android:background="#50808080"
-        android:drawableStart="@drawable/ic_baseline_person_outline_24"
-        android:drawableEnd="@drawable/ic_baseline_casino_24"
-        android:drawablePadding="20sp"
         android:hint="@string/gebruikersnaam"
-        android:inputType="text"
-        android:padding="20sp"
-        android:textColor="#FFFFFF"
         android:textColorHint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login" />
+        app:layout_constraintTop_toBottomOf="@id/login">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/usertxt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#50808080"
+            android:drawableStart="@drawable/ic_baseline_person_outline_24"
+            android:gravity="center_vertical"
+            android:drawablePadding="20sp"
+            android:ems="15"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
         android:layout_marginTop="25sp"
-        android:background="#50808080"
-        android:drawableStart="@drawable/ic_baseline_key_24"
-        android:drawableEnd="@drawable/ic_baseline_remove_red_eye_24"
-        android:drawablePadding="20sp"
+        android:layout_marginEnd="10sp"
         android:hint="@string/wachtwoord"
-        android:inputType="textPassword"
-        android:padding="20sp"
-        android:textColor="#FFFFFF"
         android:textColorHint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/user" />
+        app:passwordToggleEnabled="true"
+        app:layout_constraintTop_toBottomOf="@id/user">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordtxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:background="#50808080"
+            android:drawableStart="@drawable/ic_baseline_key_24"
+            android:drawablePadding="20sp"
+            android:ems="15"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <ProgressBar
         android:id="@+id/progress"
@@ -83,6 +100,7 @@
         android:layout_marginBottom="20sp"
         android:backgroundTint="#4CAF50"
         android:text="@string/log_in"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
@@ -94,7 +112,7 @@
         android:gravity="center"
         android:shadowColor="@color/black"
         android:shadowRadius="3"
-        android:text="@string/maak_account_aan"
+        android:text="Geen account? Maak nu eentje aan!"
         android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"

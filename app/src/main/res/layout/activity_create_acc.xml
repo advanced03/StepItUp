@@ -17,7 +17,7 @@
         android:layout_marginEnd="25sp"
         android:layout_marginBottom="50sp"
         android:gravity="center"
-        android:text="@string/maak_account_aan"
+        android:text="Maak een account aan"
         android:textColor="@color/white"
         android:textSize="50sp"
         android:textStyle="bold"
@@ -26,85 +26,104 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/newuser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10sp"
         android:layout_marginTop="50sp"
         android:layout_marginEnd="10sp"
-        android:layout_marginBottom="10sp"
+        android:textColorHint="@color/white"
+        android:hint="Gebruikersnaam"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/maakacctxt">
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/usernametxt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="#50808080"
-        android:drawableStart="@drawable/ic_baseline_person_outline_24"
-        android:drawableEnd="@drawable/ic_baseline_casino_24"
+        android:gravity="center_vertical"
         android:drawablePadding="20sp"
-        android:hint="@string/gebruikersnaam"
+        android:ems="15"
         android:inputType="text"
-        android:padding="20sp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/maakacctxt" />
-
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10sp"
-        android:layout_marginTop="25sp"
-        android:layout_marginEnd="10sp"
-        android:layout_marginBottom="10sp"
-        android:background="#50808080"
         android:drawableStart="@drawable/ic_baseline_person_outline_24"
-        android:drawableEnd="@drawable/ic_baseline_casino_24"
-        android:drawablePadding="20sp"
-        android:hint="@string/emailadres"
-        android:inputType="textEmailAddress"
-        android:padding="20sp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/newuser" />
+        />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/newpassword"
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/email"
         android:layout_marginStart="10sp"
         android:layout_marginTop="25sp"
         android:layout_marginEnd="10sp"
-        android:layout_marginBottom="10sp"
-        android:background="#50808080"
-        android:drawableStart="@drawable/ic_baseline_key_24"
-        android:drawableEnd="@drawable/ic_baseline_remove_red_eye_24"
-        android:drawablePadding="20sp"
-        android:hint="@string/wachtwoord"
-        android:inputType="textPassword"
-        android:padding="20sp"
-        android:textColor="#FFFFFF"
         android:textColorHint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/email" />
+        android:hint="E-mail adres"
+        app:layout_constraintTop_toBottomOf="@id/newuser">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailtxt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#50808080"
+            android:gravity="center_vertical"
+            android:drawablePadding="20sp"
+            android:ems="15"
+            android:inputType="textEmailAddress"
+            android:drawableStart="@drawable/ic_baseline_person_outline_24"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/repeatPassword"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/newpassword"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="25sp"
+            android:layout_marginEnd="10sp"
+            android:textColorHint="@color/white"
+            android:hint="Wachtwoord"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/email">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordtxt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#50808080"
+                android:gravity="center_vertical"
+                android:drawablePadding="20sp"
+                android:ems="15"
+                android:inputType="textPassword"
+                android:drawableStart="@drawable/ic_baseline_key_24"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/repeatPassword"
         android:layout_marginStart="10sp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="10sp"
-        android:background="#50808080"
-        android:drawableStart="@drawable/ic_baseline_key_24"
-        android:drawableEnd="@drawable/ic_baseline_remove_red_eye_24"
-        android:drawablePadding="20sp"
-        android:hint="@string/herhaal_wachtwoord"
-        android:inputType="textPassword"
         app:passwordToggleEnabled="true"
-        android:padding="20sp"
-        android:textColor="#FFFFFF"
         android:textColorHint="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newpassword" />
+        app:passwordToggleTint="@color/white"
+        android:hint="@string/herhaal_wachtwoord"
+        app:layout_constraintTop_toBottomOf="@+id/newpassword">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/repeattxt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#50808080"
+            android:gravity="center_vertical"
+            android:drawablePadding="20sp"
+            android:ems="15"
+            android:inputType="textPassword"
+            android:drawableStart="@drawable/ic_baseline_key_24"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <ProgressBar
         android:id="@+id/progress"

@@ -22,11 +22,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Home">
-        </activity>
-
-        <activity
-            android:name=".Login"
+            android:name=".Home"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,6 +33,11 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+        </activity>
+        <activity
+            android:name=".Login"
+            android:exported="true">
+
         </activity>
     </application>
 
