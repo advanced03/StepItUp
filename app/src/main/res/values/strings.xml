@@ -9,4 +9,6 @@
     <string name="maak_account">Maak account</string>
     <string name="heb_je_al_een_account_log_dan_in">Heb je al een account? log dan in!</string>
     <string name="emailadres">Emailadres</string>
+    <string name="welkom">Welkom! %1$s</string>
+    <string name="steps">Stappen: %1$d</string>
 </resources>

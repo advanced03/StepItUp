@@ -7,6 +7,8 @@ import android.widget.Toast;
 
 import com.sof.stepitup.Login;
 
+import java.sql.Array;
+
 public class SessionManager {
 
     SharedPreferences pref;
@@ -17,9 +19,12 @@ public class SessionManager {
     //PREF_NAME kan volgens mij alles zijn
     public static final String PREF_NAME = "AndroidHivePref";
     public static final String IS_LOGGED = "isLoggedIn";
+
     public static final String USER_ID = "userId";
     public static final String USERNAME = "username";
     public static final String EMAIL = "email";
+    public static final String ROLE = "role";
+//    public static final String STEPS = "steps";
 
     public SessionManager (Context context) {
         this.context = context;
@@ -27,10 +32,12 @@ public class SessionManager {
         editor = pref.edit();
     }
 
-    public void createLoginSession(int userId, String username, String email) {
+    public void createLoginSession(int userId, String username, String email, String role) {
         editor.putInt(USER_ID, userId);
+//        editor.putInt(STEPS, steps);
         editor.putString(USERNAME, username);
         editor.putString(EMAIL, email);
+        editor.putString(ROLE, role);
         editor.putBoolean(IS_LOGGED, true);
 
         editor.commit();
@@ -60,4 +67,18 @@ public class SessionManager {
 
         context.startActivity(i);
     }
+
+    public Object[] getUserInfo() {
+        int id = pref.getInt(USER_ID, 0);
+        String username = pref.getString(USERNAME, "NO_USERNAME_FOUND");
+        String email = pref.getString(EMAIL, "NO_EMAIL_FOUND");
+        String role = pref.getString(ROLE, "NO_ROLE_FOUND");
+
+        return new Object[]{id,username,email,role};
+    }
+
+//    public void updateSteps(int steps) {
+//        editor.putInt(STEPS, 0);
+//        editor.apply();
+//    }
 }

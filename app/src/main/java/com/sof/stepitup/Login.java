@@ -2,13 +2,10 @@ package com.sof.stepitup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.se.omapi.Session;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -16,7 +13,6 @@ import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.sof.stepitup.session.SessionManager;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
@@ -82,7 +78,9 @@ public class Login extends AppCompatActivity {
                                             String userId = user.getString("gebruiker_ID");
                                             String username = user.getString("gebruikersnaam");
                                             String email = user.getString("email");
-                                            sessionManager.createLoginSession(Integer.parseInt(userId), username, email);
+                                            String role = user.getString("rol");
+//                                            String steps = user.getString("stappen");
+                                            sessionManager.createLoginSession(Integer.parseInt(userId), username, email, role);
                                             Intent intent = new Intent(getApplicationContext(), Home.class);
                                             startActivity(intent);
                                             finish();
