@@ -27,7 +27,7 @@ public class Login extends AppCompatActivity {
     //Wireless LAN adapter Local Area Connection IP via hotspot
     //Jordi's ethernet 192.168.2.12
     // ctrl alt L == reformat code
-    public static final String ip = "192.168.1.136";
+    public static final String ip = "192.168.2.12";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,6 @@ public class Login extends AppCompatActivity {
 //                Toast.makeText(getBaseContext(),"Workdskfsndf",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Login.this, CreateAcc.class);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -85,7 +84,6 @@ public class Login extends AppCompatActivity {
                                             sessionManager.createLoginSession(Integer.parseInt(userId), username, email);
                                             Intent intent = new Intent(getApplicationContext(), Home.class);
                                             startActivity(intent);
-                                            finish();
 //                                                Toast.makeText(getApplicationContext(), user.getString("gebruiker_ID"), Toast.LENGTH_SHORT).show();
 
                                         } catch (JSONException e) {

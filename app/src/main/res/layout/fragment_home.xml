@@ -3,13 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HuisFragment">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="huis fragment"
-        android:textSize="25dp" />
+    tools:context=".HomeFragment">
 
     <TextView
         android:layout_width="wrap_content"
