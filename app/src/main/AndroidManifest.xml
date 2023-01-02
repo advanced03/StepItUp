@@ -13,6 +13,7 @@
         android:theme="@style/Theme.StepItUp"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
         <activity
             android:name=".CreateAcc"
             android:exported="false">
@@ -36,9 +37,7 @@
         <activity
             android:name=".Login"
             android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+
         </activity>
     </application>
 
