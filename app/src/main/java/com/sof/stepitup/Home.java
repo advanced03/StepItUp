@@ -17,8 +17,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class Home extends AppCompatActivity{
+public class Home extends AppCompatActivity {
     public static final String ip = "192.168.2.12";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,28 @@ public class Home extends AppCompatActivity{
         String welcomeText = getString(R.string.welkom, sessionManager.getUserInfo()[1]);
         welcome.setText(welcomeText);
 
+        //refresh functie
+        SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.swiperefreshlayout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                recreate();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+        //gewoon logout
+        Button logout = (Button) findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sessionManager.logoutUser();
+                finish();
+            }
+        });
+
+
+        //query voor user data
         String[] field = new String[1];
         field[0] = "user_ID";
         String[] data = new String[1];
@@ -54,22 +77,5 @@ public class Home extends AppCompatActivity{
                 }
             }
         }
-
-        SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.swiperefreshlayout);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                recreate();
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
-        Button logout = (Button) findViewById(R.id.logout);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sessionManager.logoutUser();
-                finish();
-            }
-        });
     }
 }
