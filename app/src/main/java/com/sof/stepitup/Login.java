@@ -42,7 +42,6 @@ public class Login extends AppCompatActivity {
 //                Toast.makeText(getBaseContext(),"Workdskfsndf",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Login.this, CreateAcc.class);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -83,7 +82,6 @@ public class Login extends AppCompatActivity {
                                             sessionManager.createLoginSession(Integer.parseInt(userId), username, email, role);
                                             Intent intent = new Intent(getApplicationContext(), Home.class);
                                             startActivity(intent);
-                                            finish();
 //                                                Toast.makeText(getApplicationContext(), user.getString("gebruiker_ID"), Toast.LENGTH_SHORT).show();
 
                                         } catch (JSONException e) {

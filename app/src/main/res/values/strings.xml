@@ -11,4 +11,6 @@
     <string name="emailadres">Emailadres</string>
     <string name="welkom">Welkom! %1$s</string>
     <string name="steps">Stappen: %1$d</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
