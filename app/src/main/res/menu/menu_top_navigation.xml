@@ -1,4 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+
+    <item
+        android:id="@+id/menu_notifications"
+        android:title="notification"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_shopping_basket"/>
+
+
+    <item
+        android:id="@+id/menu_shoppingcart"
+        android:icon="@drawable/ic_baseline_shopping_cart"
+        app:showAsAction="always"
+        android:title="shoppingcart" />
+
+    <item
+        android:id="@+id/menu_profile"
+        android:title="profile"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_account_circle"/>
 
 </menu>

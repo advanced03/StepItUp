@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+
+    <item
+        android:id="@+id/menu_shopping"
+        android:title="shopping"
+        android:icon="@drawable/ic_baseline_shopping_basket"/>
+
+
+    <item
+        android:id="@+id/menu_news"
+        android:title="news"
+        android:icon="@drawable/ic_baseline_newspaper"/>
+
     <item
         android:id="@+id/menu_home"
         android:title="home"
-        android:icon="@drawable/ic_home"></item>
+        android:icon="@drawable/ic_home"/>
 
     <item
-        android:id="@+id/menu_dashboard"
-        android:title="dashboard"
-        android:icon="@drawable/ic_dashboard"></item>
-
-    <item
-        android:id="@+id/menu_notification"
-        android:title="notification"
-        android:icon="@drawable/ic_baseline_notifications_24"></item>
+        android:id="@+id/menu_rank"
+        android:icon="@drawable/ic_baseline_format_list_numbered"
+        android:title="rank" />
 
 </menu>

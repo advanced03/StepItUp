@@ -27,7 +27,7 @@ public class Login extends AppCompatActivity {
     //Wireless LAN adapter Local Area Connection IP via hotspot
     //Jordi's ethernet 192.168.2.12
     // ctrl alt L == reformat code
-    public static final String ip = "192.168.2.12";
+    public static final String ip = "192.168.1.136";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
