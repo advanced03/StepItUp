@@ -52,8 +52,8 @@ public class HomeFragment extends Fragment {
         PutData putData = new PutData("http://" + ip + "/stepitup/GetLatestUserInfo.php", "GET", field, data);
         if (putData.startPut()) {
             if (putData.onComplete()) {
-                String result = putData.getResult();
                 try {
+                    String result = putData.getResult();
                     JSONObject user = new JSONObject(result);
                     int userSteps = user.getInt("stappen");
 
