@@ -32,7 +32,7 @@ public class RankFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_rank, container, false);
-//        SessionManager sessionManager = new SessionManager(root.getContext());
+        SessionManager sessionManager = new SessionManager(root.getContext());
 //        TextView rankText = root.findViewById(R.id.message_rank_fragment);
 
         TableLayout tableLayout = root.findViewById(R.id.table);
@@ -58,15 +58,38 @@ public class RankFragment extends Fragment {
                         int steps = user.getInt(1);
                         TableRow row = new TableRow(root.getContext());
 
+                        TextView rank = new TextView(root.getContext());
+                        rank.setText(""+(i+1));
+                        if (currentUsername.equals(sessionManager.getUserInfo()[1])) {
+                            rank.setTextColor(Color.RED);
+                        }
+                        else {
+                            rank.setTextColor(Color.BLACK);
+                        }
+                        rank.setPadding(0,0,150,0);
+                        row.addView(rank);
+
                         TextView username = new TextView(root.getContext());
                         username.setText(currentUsername);
-                        username.setTextColor(Color.BLACK);
+                        if (currentUsername.equals(sessionManager.getUserInfo()[1])) {
+                            username.setTextColor(Color.RED);
+                        }
+                        else {
+                            username.setTextColor(Color.BLACK);
+                        }
                         username.setPadding(0,0,150,0);
                         row.addView(username);
 
+
+
                         TextView stepTxt = new TextView(root.getContext());
                         stepTxt.setText(""+steps);
-                        stepTxt.setTextColor(Color.BLACK);
+                        if (currentUsername.equals(sessionManager.getUserInfo()[1])) {
+                            stepTxt.setTextColor(Color.RED);
+                        }
+                        else {
+                            stepTxt.setTextColor(Color.BLACK);
+                        }
                         row.addView(stepTxt);
 
                         tableLayout.addView(row);
