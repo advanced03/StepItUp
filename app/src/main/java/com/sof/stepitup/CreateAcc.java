@@ -13,12 +13,12 @@ import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
 public class CreateAcc extends AppCompatActivity {
     //Wireless LAN adapter Local Area Connection IP via hotspot
-    public static String ip = "192.168.2.12";
+    //Jordi's ethernet 192.168.2.12
+    public static final String ip = "192.168.1.136";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +64,7 @@ public class CreateAcc extends AppCompatActivity {
                             data[1] = passwordId.getText().toString();
                             data[2] = repeatId.getText().toString();
                             data[3] = emailId.getText().toString();
-//                            Toast.makeText(getApplicationContext(), data[3], Toast.LENGTH_SHORT).show();
+
                             PutData putData = new PutData("http://"+ ip +"/stepitup/signup.php", "POST", field, data);
                             if (putData.startPut()) {
                                 if (putData.onComplete()) {

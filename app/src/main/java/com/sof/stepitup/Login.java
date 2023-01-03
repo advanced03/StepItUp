@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -14,19 +13,24 @@ import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
+import com.sof.stepitup.session.SessionManager;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Login extends AppCompatActivity {
-//REMINDER: SESSIONS KUNNEN GEMAAKT WORDEN VOOR ONTHOUDEN VAN LOGINS
-//Wireless LAN adapter Local Area Connection IP via hotspot
-    public static String ip = "192.168.2.12";
+    //Wireless LAN adapter Local Area Connection IP via hotspot
+    //Jordi's ethernet 192.168.2.12
+    // ctrl alt L == reformat code
+    public static final String ip = "192.168.2.12";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
+        SessionManager sessionManager = new SessionManager(getApplicationContext());
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress);
         TextInputEditText username =(TextInputEditText) findViewById(R.id.usertxt);
         TextInputEditText password =(TextInputEditText) findViewById(R.id.passwordtxt);
@@ -38,7 +42,6 @@ public class Login extends AppCompatActivity {
 //                Toast.makeText(getBaseContext(),"Workdskfsndf",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Login.this, CreateAcc.class);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -63,21 +66,32 @@ public class Login extends AppCompatActivity {
                             data[0] = username.getText().toString();
                             data[1] = password.getText().toString();
 //                            try {
-                            PutData putData = new PutData("http://"+ ip +"/stepitup/login.php", "POST", field, data);
-                                if (putData.startPut()) {
-                                    if (putData.onComplete()) {
-                                        progressBar.setVisibility(View.GONE);
-                                        String result = putData.getResult();
-                                        if (result.equals("Welkom!")) {
+                            PutData putData = new PutData("http://" + ip + "/stepitup/login.php", "POST", field, data);
+                            if (putData.startPut()) {
+                                if (putData.onComplete()) {
+                                    progressBar.setVisibility(View.GONE);
+                                    String result = putData.getResult();
+                                    if (!result.equals("Helaas is de combinatie onjuist")) {
+                                        try {
+                                            JSONObject user = new JSONObject(result);
+                                            String userId = user.getString("gebruiker_ID");
+                                            String username = user.getString("gebruikersnaam");
+                                            String email = user.getString("email");
+                                            String role = user.getString("rol");
+//                                            String steps = user.getString("stappen");
+                                            sessionManager.createLoginSession(Integer.parseInt(userId), username, email, role);
                                             Intent intent = new Intent(getApplicationContext(), Home.class);
                                             startActivity(intent);
-                                            finish();
+//                                                Toast.makeText(getApplicationContext(), user.getString("gebruiker_ID"), Toast.LENGTH_SHORT).show();
+
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
                                         }
-                                        else {
-                                            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                                        }
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                                     }
                                 }
+                            }
 //                            }
 //                            catch(Exception error1) {
 //                                error1.printStackTrace();
