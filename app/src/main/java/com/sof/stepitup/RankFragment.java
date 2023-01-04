@@ -60,38 +60,29 @@ public class RankFragment extends Fragment {
 
                         TextView rank = new TextView(root.getContext());
                         rank.setText(""+(i+1));
-                        if (currentUsername.equals(sessionManager.getUserInfo()[1])) {
-                            rank.setTextColor(Color.RED);
-                        }
-                        else {
-                            rank.setTextColor(Color.BLACK);
-                        }
                         rank.setPadding(0,0,150,0);
-                        row.addView(rank);
-
-                        TextView username = new TextView(root.getContext());
-                        username.setText(currentUsername);
-                        if (currentUsername.equals(sessionManager.getUserInfo()[1])) {
-                            username.setTextColor(Color.RED);
-                        }
-                        else {
-                            username.setTextColor(Color.BLACK);
-                        }
-                        username.setPadding(0,0,150,0);
-                        row.addView(username);
-
-
 
                         TextView stepTxt = new TextView(root.getContext());
                         stepTxt.setText(""+steps);
+
+                        TextView username = new TextView(root.getContext());
+                        username.setText(currentUsername);
+                        username.setPadding(0,0,150,0);
+
                         if (currentUsername.equals(sessionManager.getUserInfo()[1])) {
+                            rank.setTextColor(Color.RED);
+                            username.setTextColor(Color.RED);
                             stepTxt.setTextColor(Color.RED);
                         }
                         else {
+                            rank.setTextColor(Color.BLACK);
+                            username.setTextColor(Color.BLACK);
                             stepTxt.setTextColor(Color.BLACK);
                         }
-                        row.addView(stepTxt);
 
+                        row.addView(rank);
+                        row.addView(username);
+                        row.addView(stepTxt);
                         tableLayout.addView(row);
 //                        rankText.setText(currentUsername);
 //                        Toast.makeText(root.getContext(), currentUsername + currentStepsForUser, Toast.LENGTH_SHORT).show();
