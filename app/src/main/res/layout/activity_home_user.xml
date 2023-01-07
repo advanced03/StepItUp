@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layoutDescription="@xml/activity_home_user_scene"
-    tools:context=".Home">
+    tools:context=".MainNavigation">
 
     <!--    <TextView-->
     <!--        android:id="@+id/Steps"-->
@@ -28,14 +28,12 @@
     <!--        app:layout_constraintBottom_toTopOf="@+id/menu_top_navigation"-->
     <!--        app:menu="@menu/menu_top_navigation"-->
     <!--        tools:ignore="BottomAppBar,NotSibling" />-->
-
         <FrameLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/bottom_nav1"
-            android:layout_marginBottom="1dp" />
-
+            />
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav1"
         android:layout_width="match_parent"

@@ -46,7 +46,6 @@ public class RankFragment extends Fragment {
 
         if (putData.startPut()) {
             if (putData.onComplete()) {
-//                rankText.setText("helpme");
                 try {
                     String result = putData.getResult();
                     JSONArray users = new JSONArray(result);
@@ -60,14 +59,15 @@ public class RankFragment extends Fragment {
 
                         TextView rank = new TextView(root.getContext());
                         rank.setText(""+(i+1));
-                        rank.setPadding(0,0,150,0);
+                        rank.setGravity(Gravity.CENTER);
 
                         TextView stepTxt = new TextView(root.getContext());
                         stepTxt.setText(""+steps);
+                        stepTxt.setGravity(Gravity.CENTER);
 
                         TextView username = new TextView(root.getContext());
                         username.setText(currentUsername);
-                        username.setPadding(0,0,150,0);
+                        username.setGravity(Gravity.CENTER);
 
                         if (currentUsername.equals(sessionManager.getUserInfo()[1])) {
                             rank.setTextColor(Color.RED);
