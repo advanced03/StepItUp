@@ -29,7 +29,7 @@ public class MainNavigation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_user);
 
-        SessionManager sessionManager = new SessionManager(getApplicationContext());
+        SessionManager sessionManager = new SessionManager(getApplicationContext(), "userSession");
         sessionManager.checkLogin();
 
         bottomNavigationView = findViewById(R.id.bottom_nav1);

@@ -32,7 +32,7 @@ public class RankFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_rank, container, false);
-        SessionManager sessionManager = new SessionManager(root.getContext());
+        SessionManager sessionManager = new SessionManager(root.getContext(), "userSession");
 //        TextView rankText = root.findViewById(R.id.message_rank_fragment);
 
         TableLayout tableLayout = root.findViewById(R.id.table);

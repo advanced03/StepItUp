@@ -21,7 +21,6 @@ import com.vishnusivadas.advanced_httpurlconnection.PutData;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -31,7 +30,7 @@ public class ShopFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_shop, container, false);
-        sessionManager = new SessionManager(root.getContext());
+        sessionManager = new SessionManager(root.getContext(), "cartSession");
 
         TableLayout tableLayout = root.findViewById(R.id.table);
 
@@ -150,5 +149,6 @@ public class ShopFragment extends Fragment implements View.OnClickListener {
         addedProduct.put("price",productPrice);
         addedProduct.put("amount",1);
         sessionManager.addToCart(addedProduct);
+        Toast.makeText(v.getContext(), "product toegevoegd", Toast.LENGTH_SHORT).show();
     }
 }

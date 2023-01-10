@@ -13,6 +13,10 @@
     <string name="steps">Stappen: %1$d</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="down">↓</string>
+    <string name="up">↑</string>
     <item type="id" name="name_of_product"/>
     <item type="id" name="price_of_product"/>
+    <item type="id" name="cart_action"/>
+    <item type="id" name="item_id"/>
 </resources>

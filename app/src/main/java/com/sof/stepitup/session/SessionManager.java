@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.ToNumberPolicy;
@@ -27,11 +24,9 @@ public class SessionManager {
     SharedPreferences.Editor editor;
     Context context;
     Gson gson;
-    ObjectMapper objectMapper;
 
     int Private_mode = 0;
     //PREF_NAME kan volgens mij alles zijn
-    public static final String PREF_NAME = "AndroidHivePref";
     public static final String IS_LOGGED = "isLoggedIn";
 
     public static final String CART = "cart";
@@ -41,9 +36,9 @@ public class SessionManager {
     public static final String ROLE = "role";
 //    public static final String STEPS = "steps";
 
-    public SessionManager (Context context) {
+    public SessionManager (Context context, String sessionName) {
         this.context = context;
-        pref = context.getSharedPreferences(PREF_NAME, Private_mode);
+        pref = context.getSharedPreferences(sessionName, Private_mode);
         editor = pref.edit();
         gson = new Gson();
     }
@@ -97,7 +92,7 @@ public class SessionManager {
         Type type = new TypeToken<ArrayList<HashMap<String, Object>>>() {}.getType();
 //        TypeReference ArrayList typeRef = new TypeReference<HashMap<String,Object>>() {};
         boolean inCart = false;
-        ArrayList<HashMap<String, Object>> currentCart = gson.fromJson(cartString, type); //hopelijk is dit gewoon leeg wanneer je fromjson conversie doet op "" en geen error
+        ArrayList<HashMap<String, Object>> currentCart = gson.fromJson(cartString, type);
 //        ArrayList<HashMap<String, Object>> currentCart = objectMapper.readValue(cartString, typeRef);
         //if cart iets heeft
 //        objectMapper.writeValueAsString();
@@ -123,11 +118,48 @@ public class SessionManager {
         String newCart = gson.toJson(currentCart);
         editor.putString(CART,newCart);
         editor.commit();
-        System.out.println("empty of cart gekozen product is uniek" + currentCart);
 //        Intent i = new Intent(context, ShoppingcartFragment.class);
 //        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
 
 //        context.startActivity(i);
 //        editor.putString(CART, username);
+    }
+    public ArrayList<HashMap<String, Object>> getCart() {
+
+        String cartString = pref.getString(CART,"[]");
+        Type type = new TypeToken<ArrayList<HashMap<String, Object>>>() {}.getType();
+        ArrayList<HashMap<String, Object>> currentCart = gson.fromJson(cartString, type);
+        return currentCart;
+    }
+
+    public void changeCart(String action, int id) {
+
+        String cartString = pref.getString(CART,"[]");
+        Type type = new TypeToken<ArrayList<HashMap<String, Object>>>() {}.getType();
+        ArrayList<HashMap<String, Object>> currentCart = gson.fromJson(cartString, type);
+        for (HashMap<String, Object> product : currentCart) {
+            int chosen = id;
+            double productInCart = (double) product.get("id");
+
+            if (action.equals("add")) {
+                if (chosen == productInCart) {
+                    System.out.println("being added RIGHT NOW");
+                    product.put("amount", (double) product.get("amount") + 1);
+                    break;
+                }
+            }
+            else if (action.equals("remove")){
+                System.out.println("REMOVING 1 RIGHT NOW");
+                product.put("amount", (double) product.get("amount") - 1);
+                if ((double)product.get("amount") <= 0) {
+                    System.out.println("REMOVING IT RIGHT NOW");
+                    currentCart.remove(product);
+                }
+                break;
+            }
+        }
+        String newCart = gson.toJson(currentCart);
+        editor.putString(CART,newCart);
+        editor.commit();
     }
 }
