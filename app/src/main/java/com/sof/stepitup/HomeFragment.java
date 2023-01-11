@@ -20,7 +20,7 @@ import org.json.JSONObject;
 
 
 public class HomeFragment extends Fragment {
-    public static final String ip = "192.168.2.12";
+    public static final String ip = "145.52.154.211";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

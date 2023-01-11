@@ -25,7 +25,7 @@ import java.util.HashMap;
 
 
 public class ShoppingcartFragment extends Fragment implements View.OnClickListener{
-    public static final String ip = "192.168.2.12";
+    public static final String ip = "145.52.154.211";
     private SessionManager sessionManager;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,6 +59,7 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
                 card.setLayoutParams(marginParamsMatchParent);
                 card.setElevation(10);
                 card.setRadius(20);
+
                 marginParams.setMargins(30,30,30,10);
                 TextView title = new TextView(root.getContext());
                 title.setLayoutParams(marginParams);
