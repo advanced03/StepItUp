@@ -20,18 +20,18 @@ import org.json.JSONObject;
 
 
 public class HomeFragment extends Fragment {
-    public static final String ip = "145.52.154.211";
+    public static final String ip = "192.168.2.12";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         // Inflate the layout for this fragment
         SessionManager sessionManager = new SessionManager(root.getContext(),"userSession");
-        TextView welcome = root.findViewById(R.id.welcome_txt);
-        TextView steps = root.findViewById(R.id.steps);
+//        TextView welcome = root.findViewById(R.id.welcome_txt);
+//        TextView steps = root.findViewById(R.id.steps);
 //        zet username in welkom
-        String welcomeText = getString(R.string.welkom, sessionManager.getUserInfo()[1]);
-        welcome.setText(welcomeText);
+//        String welcomeText = getString(R.string.welkom, sessionManager.getUserInfo()[1]);
+//        welcome.setText(welcomeText);
 
         //gewoon logout
         Button logout = (Button) root.findViewById(R.id.logout);
@@ -43,26 +43,26 @@ public class HomeFragment extends Fragment {
             }
         });
         //query voor user data
-        String[] field = new String[1];
-        field[0] = "user_ID";
-        String[] data = new String[1];
-        data[0] = sessionManager.getUserInfo()[0].toString();
-
-        PutData putData = new PutData("http://" + ip + "/stepitup/GetLatestUserInfo.php", "GET", field, data);
-        if (putData.startPut()) {
-            if (putData.onComplete()) {
-                try {
-                    String result = putData.getResult();
-                    JSONObject user = new JSONObject(result);
-                    int userSteps = user.getInt("stappen");
-
-                    String a = getString(R.string.steps, userSteps);
-                    steps.setText(a);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+//        String[] field = new String[1];
+//        field[0] = "user_ID";
+//        String[] data = new String[1];
+//        data[0] = sessionManager.getUserInfo()[0].toString();
+//
+//        PutData putData = new PutData("http://" + ip + "/stepitup/GetLatestUserInfo.php", "GET", field, data);
+//        if (putData.startPut()) {
+//            if (putData.onComplete()) {
+//                try {
+//                    String result = putData.getResult();
+//                    JSONObject user = new JSONObject(result);
+//                    int userSteps = user.getInt("stappen");
+//
+//                    String a = getString(R.string.steps, userSteps);
+//                    steps.setText(a);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
 
         SwipeRefreshLayout swipeRefreshLayout = root.findViewById(R.id.swiperefreshlayout);
         swipeRefreshLayout.setOnRefreshListener(

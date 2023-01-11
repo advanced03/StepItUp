@@ -19,7 +19,7 @@ import org.json.JSONException;
 
 
 public class NewsFragment extends Fragment {
-    public static final String ip = "145.52.154.211";
+    public static final String ip = "192.168.2.12";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -2,6 +2,9 @@
 <resources>
     <color name="purple_200">#86FCA7</color>
     <color name="purple_500">#00EE28</color>
+    <color name="light_black">#262d40</color>
+    <color name="french_grey">#bfbdc3</color>
+    <color name="kikker_groen">#c1ff77</color>
     <color name="purple_700">#00B32D</color>
     <color name="teal_200">#03DA76</color>
     <color name="teal_700">#0E8701</color>
