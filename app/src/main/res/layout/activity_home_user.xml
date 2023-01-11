@@ -8,21 +8,6 @@
     app:layoutDescription="@xml/activity_home_user_scene"
     tools:context=".Home">
 
-<<<<<<< HEAD
-
-=======
-    <!--    <TextView-->
-    <!--        android:id="@+id/Steps"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Stappen: 69420"-->
-    <!--        android:layout_centerInParent="true"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.5"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
->>>>>>> 4982601a32e11e10447aadd517ec6f4361d910b3
 
 
     <!--    <com.google.android.material.bottomappbar.BottomAppBar-->
