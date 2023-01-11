@@ -30,7 +30,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        SessionManager sessionManager = new SessionManager(getApplicationContext());
+        SessionManager sessionManager = new SessionManager(getApplicationContext(),"userSession");
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress);
         TextInputEditText username =(TextInputEditText) findViewById(R.id.usertxt);
         TextInputEditText password =(TextInputEditText) findViewById(R.id.passwordtxt);
@@ -80,8 +80,9 @@ public class Login extends AppCompatActivity {
                                             String role = user.getString("rol");
 //                                            String steps = user.getString("stappen");
                                             sessionManager.createLoginSession(Integer.parseInt(userId), username, email, role);
-                                            Intent intent = new Intent(getApplicationContext(), Home.class);
+                                            Intent intent = new Intent(getApplicationContext(), MainNavigation.class);
                                             startActivity(intent);
+                                            finish();
 //                                                Toast.makeText(getApplicationContext(), user.getString("gebruiker_ID"), Toast.LENGTH_SHORT).show();
 
                                         } catch (JSONException e) {

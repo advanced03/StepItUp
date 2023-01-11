@@ -26,10 +26,9 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         // Inflate the layout for this fragment
-        SessionManager sessionManager = new SessionManager(root.getContext());
+        SessionManager sessionManager = new SessionManager(root.getContext(),"userSession");
         TextView welcome = root.findViewById(R.id.welcome_txt);
         TextView steps = root.findViewById(R.id.steps);
-
 //        zet username in welkom
         String welcomeText = getString(R.string.welkom, sessionManager.getUserInfo()[1]);
         welcome.setText(welcomeText);
@@ -52,8 +51,8 @@ public class HomeFragment extends Fragment {
         PutData putData = new PutData("http://" + ip + "/stepitup/GetLatestUserInfo.php", "GET", field, data);
         if (putData.startPut()) {
             if (putData.onComplete()) {
-                String result = putData.getResult();
                 try {
+                    String result = putData.getResult();
                     JSONObject user = new JSONObject(result);
                     int userSteps = user.getInt("stappen");
 
