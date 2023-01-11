@@ -16,4 +16,13 @@
         android:orientation="vertical"
         android:padding="15dp"></LinearLayout>
         </ScrollView>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+    android:id="@+id/bottom_nav1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:labelVisibilityMode="labeled"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:menu="@menu/menu_bottom_navigation" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

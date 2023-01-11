@@ -139,6 +139,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#4CAF50"
         android:text="@string/maak_account"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
