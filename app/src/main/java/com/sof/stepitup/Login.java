@@ -71,15 +71,15 @@ public class Login extends AppCompatActivity {
                                 if (putData.onComplete()) {
                                     progressBar.setVisibility(View.GONE);
                                     String result = putData.getResult();
-                                    if (!result.equals("Helaas is de combinatie onjuist")) {
+                                    if (!result.equals("Helaas is de combinatie onjuist") && !result.equals("Geen connectie met database...")) {
                                         try {
                                             JSONObject user = new JSONObject(result);
                                             String userId = user.getString("gebruiker_ID");
                                             String username = user.getString("gebruikersnaam");
                                             String email = user.getString("email");
                                             String role = user.getString("rol");
-//                                            String steps = user.getString("stappen");
-                                            sessionManager.createLoginSession(Integer.parseInt(userId), username, email, role);
+                                            String points = user.getString("punten");
+                                            sessionManager.createLoginSession(Integer.parseInt(userId), username, email, role, Integer.parseInt(points));
                                             Intent intent = new Intent(getApplicationContext(), MainNavigation.class);
                                             startActivity(intent);
                                             finish();

@@ -1,11 +1,11 @@
 package com.sof.stepitup;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.Gravity;
@@ -17,16 +17,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.card.MaterialCardView;
 import com.sof.stepitup.session.SessionManager;
+import com.vishnusivadas.advanced_httpurlconnection.PutData;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
 public class ShoppingcartFragment extends Fragment implements View.OnClickListener{
-    public static final String ip = "145.52.154.211";
+    public static final String ip = "192.168.2.12";
     private SessionManager sessionManager;
+    private SessionManager userSessionManager;
+    private int points;
+    private int total;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,10 +40,13 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
         LinearLayout l = root.findViewById(R.id.baseLinearLayout);
 
         sessionManager = new SessionManager(root.getContext(), "cartSession");
+        userSessionManager = new SessionManager(root.getContext(), "userSession");
+        points = (int) userSessionManager.getUserInfo()[4];
+
         ArrayList<HashMap<String, Object>> cart = sessionManager.getCart();
 
         if (!cart.isEmpty()) {
-            int totaal = 0;
+            total = 0;
             for (HashMap<String, Object> item :cart){
                 LinearLayout.LayoutParams marginParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 LinearLayout.LayoutParams marginParamsMatchParent = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -48,7 +57,7 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
                 LinearLayout layoutInsideCardHorizontal = new LinearLayout(root.getContext());
                 layoutInsideCardHorizontal.setOrientation(LinearLayout.HORIZONTAL);
                 int itemId = (int) (double) item.get("id");
-                totaal += (int)(double) item.get("amount") * (int)(double) item.get("price");
+                total += (int)(double) item.get("amount") * (int)(double) item.get("price");
                 String itemName = (String) item.get("name");
                 int itemPrice = (int)(double) item.get("price");
                 int itemAmount = (int)(double) item.get("amount");
@@ -73,11 +82,11 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
                 price.setTextColor(Color.parseColor("#666666"));
                 price.setText("Punten: "+itemPrice);
 
-                TextView total = new TextView(root.getContext());
-                total.setLayoutParams(marginParams);
-                total.setTextAppearance(androidx.appcompat.R.style.TextAppearance_AppCompat_Subhead);
-                total.setTextColor(Color.parseColor("#666666"));
-                total.setText("Totaal: " +(itemPrice*itemAmount));
+                TextView totalTxt = new TextView(root.getContext());
+                totalTxt.setLayoutParams(marginParams);
+                totalTxt.setTextAppearance(androidx.appcompat.R.style.TextAppearance_AppCompat_Subhead);
+                totalTxt.setTextColor(Color.parseColor("#666666"));
+                totalTxt.setText("Totaal: " +(itemPrice*itemAmount));
 
                 //horizontal shit
                 Button add = new Button(root.getContext());
@@ -114,7 +123,7 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
 
                 layoutInsideCardVertical.addView(title);
                 layoutInsideCardVertical.addView(price);
-                layoutInsideCardVertical.addView(total);
+                layoutInsideCardVertical.addView(totalTxt);
                 layoutInsideCardVertical.addView(layoutInsideCardHorizontal);
 
                 card.addView(layoutInsideCardVertical);
@@ -123,10 +132,15 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
             }
             LinearLayout.LayoutParams bottom = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             bottom.gravity = Gravity.CENTER;
-            TextView totaalTxt = new TextView(root.getContext());
-            totaalTxt.setGravity(Gravity.END);
-            totaalTxt.setTextAppearance(androidx.appcompat.R.style.TextAppearance_AppCompat_Subhead);
-            totaalTxt.setText("Totaal: "+totaal);
+            TextView cartTotalTxt = new TextView(root.getContext());
+            cartTotalTxt.setGravity(Gravity.END);
+            cartTotalTxt.setTextAppearance(androidx.appcompat.R.style.TextAppearance_AppCompat_Subhead);
+            cartTotalTxt.setText("Totaal: "+total);
+
+            TextView userPoints = new TextView(root.getContext());
+            userPoints.setGravity(Gravity.END);
+            userPoints.setTextAppearance(androidx.appcompat.R.style.TextAppearance_AppCompat_Subhead);
+            userPoints.setText("Jouw punten: "+points);
 
             Button buyButton = new Button(root.getContext());
             buyButton.setLayoutParams(bottom);
@@ -134,7 +148,8 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
             buyButton.setAllCaps(false);
             buyButton.setOnClickListener(this);
 
-            l.addView(totaalTxt);
+            l.addView(cartTotalTxt);
+            l.addView(userPoints);
             l.addView(buyButton);
         }
         else {
@@ -164,7 +179,34 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
         }
         else {
             //doe hier koop actie code
-            Toast.makeText(v.getContext(), "Loading...", Toast.LENGTH_SHORT).show();
+            int leftoverPoints = points - total;
+            if (leftoverPoints <= 0) {
+                Toast.makeText(v.getContext(), "Te weinig punten....", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                String [] field = {"userId","cartArrayString","newPointBalance"};
+                String [] data = {Integer.toString((int) userSessionManager.getUserInfo()[0]), sessionManager.getStringifiedCart(),Integer.toString(leftoverPoints)};
+                PutData putData = new PutData("http://" + ip + "/stepitup/checkout.php", "POST", field, data);
+                if (putData.startPut()) {
+                    if (putData.onComplete()) {
+                        String result = putData.getResult();
+                        if (result.equals("Success!")) {
+                            userSessionManager.updatePoints(leftoverPoints);
+                            sessionManager.resetCart();
+                            getParentFragmentManager()
+                                    .beginTransaction()
+                                    .detach(ShoppingcartFragment.this)
+                                    .commit();
+                            getParentFragmentManager()
+                                    .beginTransaction()
+                                    .attach(ShoppingcartFragment.this)
+                                    .commit();
+                        } else {
+                            System.out.println(result);
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -3,23 +3,17 @@ package com.sof.stepitup.session;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.ToNumberPolicy;
 import com.google.gson.reflect.TypeToken;
 import com.sof.stepitup.Login;
-import com.sof.stepitup.ShoppingcartFragment;
 
 import java.lang.reflect.Type;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
 public class SessionManager {
-
+//cartSession en userSession wordt gebruikt
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     Context context;
@@ -34,6 +28,7 @@ public class SessionManager {
     public static final String USERNAME = "username";
     public static final String EMAIL = "email";
     public static final String ROLE = "role";
+    public static final String POINTS = "points";
 //    public static final String STEPS = "steps";
 
     public SessionManager (Context context, String sessionName) {
@@ -43,9 +38,9 @@ public class SessionManager {
         gson = new Gson();
     }
 
-    public void createLoginSession(int userId, String username, String email, String role) {
+    public void createLoginSession(int userId, String username, String email, String role, int points) {
         editor.putInt(USER_ID, userId);
-//        editor.putInt(STEPS, steps);
+        editor.putInt(POINTS, points);
         editor.putString(USERNAME, username);
         editor.putString(EMAIL, email);
         editor.putString(ROLE, role);
@@ -69,8 +64,9 @@ public class SessionManager {
 
     public void logoutUser() {
         editor.clear();
+        pref = context.getSharedPreferences("cartSession", 0);
+        pref.edit().clear().apply();
         editor.commit();
-
         Intent i = new Intent(context, Login.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);;
 
@@ -82,8 +78,14 @@ public class SessionManager {
         String username = pref.getString(USERNAME, "NO_USERNAME_FOUND");
         String email = pref.getString(EMAIL, "NO_EMAIL_FOUND");
         String role = pref.getString(ROLE, "NO_ROLE_FOUND");
+        int points = pref.getInt(POINTS, 0);
 
-        return new Object[]{id,username,email,role};
+        return new Object[]{id,username,email,role,points};
+    }
+
+    public void updatePoints(int databasePoints) {
+        editor.putInt(POINTS, databasePoints);
+        editor.commit();
     }
 
     public void addToCart(HashMap<String, Object> chosenProduct) {
@@ -118,11 +120,6 @@ public class SessionManager {
         String newCart = gson.toJson(currentCart);
         editor.putString(CART,newCart);
         editor.commit();
-//        Intent i = new Intent(context, ShoppingcartFragment.class);
-//        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-
-//        context.startActivity(i);
-//        editor.putString(CART, username);
     }
     public ArrayList<HashMap<String, Object>> getCart() {
 
@@ -130,6 +127,11 @@ public class SessionManager {
         Type type = new TypeToken<ArrayList<HashMap<String, Object>>>() {}.getType();
         ArrayList<HashMap<String, Object>> currentCart = gson.fromJson(cartString, type);
         return currentCart;
+    }
+
+    public String getStringifiedCart() {
+
+        return pref.getString(CART,"[]");
     }
 
     public void changeCart(String action, int id) {
@@ -143,16 +145,13 @@ public class SessionManager {
 
             if (action.equals("add")) {
                 if (chosen == productInCart) {
-                    System.out.println("being added RIGHT NOW");
                     product.put("amount", (double) product.get("amount") + 1);
                     break;
                 }
             }
             else if (action.equals("remove")){
-                System.out.println("REMOVING 1 RIGHT NOW");
                 product.put("amount", (double) product.get("amount") - 1);
                 if ((double)product.get("amount") <= 0) {
-                    System.out.println("REMOVING IT RIGHT NOW");
                     currentCart.remove(product);
                 }
                 break;
@@ -161,5 +160,9 @@ public class SessionManager {
         String newCart = gson.toJson(currentCart);
         editor.putString(CART,newCart);
         editor.commit();
+    }
+    public void resetCart() {
+        pref = context.getSharedPreferences("cartSession", 0);
+        pref.edit().clear().apply();
     }
 }

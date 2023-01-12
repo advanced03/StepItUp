@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment {
 //                    String result = putData.getResult();
 //                    JSONObject user = new JSONObject(result);
 //                    int userSteps = user.getInt("stappen");
-//
+//                    sessionManager.updatePoints(user.getInt("punten"));
 //                    String a = getString(R.string.steps, userSteps);
 //                    steps.setText(a);
 //                } catch (JSONException e) {
