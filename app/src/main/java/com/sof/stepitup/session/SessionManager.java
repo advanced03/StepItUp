@@ -150,11 +150,13 @@ public class SessionManager {
                 }
             }
             else if (action.equals("remove")){
-                product.put("amount", (double) product.get("amount") - 1);
-                if ((double)product.get("amount") <= 0) {
-                    currentCart.remove(product);
+                if (chosen == productInCart) {
+                    product.put("amount", (double) product.get("amount") - 1);
+                    if ((double) product.get("amount") <= 0) {
+                        currentCart.remove(product);
+                    }
+                    break;
                 }
-                break;
             }
         }
         String newCart = gson.toJson(currentCart);

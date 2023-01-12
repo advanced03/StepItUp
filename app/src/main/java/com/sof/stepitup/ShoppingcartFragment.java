@@ -144,13 +144,22 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
 
             Button buyButton = new Button(root.getContext());
             buyButton.setLayoutParams(bottom);
+            buyButton.setTag(R.id.cart_action, "buy");
             buyButton.setText("Koop Nu!");
             buyButton.setAllCaps(false);
             buyButton.setOnClickListener(this);
 
+            Button resetButton = new Button(root.getContext());
+            resetButton.setLayoutParams(bottom);
+            resetButton.setTag(R.id.cart_action, "empty");
+            resetButton.setText("Winkelwagen legen");
+            resetButton.setAllCaps(false);
+            resetButton.setOnClickListener(this);
+
             l.addView(cartTotalTxt);
             l.addView(userPoints);
             l.addView(buyButton);
+            l.addView(resetButton);
         }
         else {
             TextView emptyText = new TextView(root.getContext());
@@ -168,16 +177,9 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
             String action = (String) v.getTag(R.id.cart_action);
             int id = (int) v.getTag(R.id.item_id);
             sessionManager.changeCart(action,id);
-            getParentFragmentManager()
-                    .beginTransaction()
-                    .detach(ShoppingcartFragment.this)
-                    .commit();
-            getParentFragmentManager()
-                    .beginTransaction()
-                    .attach(ShoppingcartFragment.this)
-                    .commit();
+            refreshFragment();
         }
-        else {
+        else if(v.getTag(R.id.cart_action) == "buy") {
             //doe hier koop actie code
             int leftoverPoints = points - total;
             if (leftoverPoints <= 0) {
@@ -193,14 +195,7 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
                         if (result.equals("Success!")) {
                             userSessionManager.updatePoints(leftoverPoints);
                             sessionManager.resetCart();
-                            getParentFragmentManager()
-                                    .beginTransaction()
-                                    .detach(ShoppingcartFragment.this)
-                                    .commit();
-                            getParentFragmentManager()
-                                    .beginTransaction()
-                                    .attach(ShoppingcartFragment.this)
-                                    .commit();
+                            refreshFragment();
                         } else {
                             System.out.println(result);
                         }
@@ -208,5 +203,20 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
                 }
             }
         }
+        else if (v.getTag(R.id.cart_action) == "empty") {
+            sessionManager.resetCart();
+            refreshFragment();
+        }
+    }
+
+    public void refreshFragment() {
+        getParentFragmentManager()
+                .beginTransaction()
+                .detach(ShoppingcartFragment.this)
+                .commit();
+        getParentFragmentManager()
+                .beginTransaction()
+                .attach(ShoppingcartFragment.this)
+                .commit();
     }
 }
