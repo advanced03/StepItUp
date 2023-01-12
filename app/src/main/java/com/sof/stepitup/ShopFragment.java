@@ -1,6 +1,5 @@
 package com.sof.stepitup;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -25,7 +24,7 @@ import java.util.HashMap;
 
 
 public class ShopFragment extends Fragment implements View.OnClickListener {
-    public static final String ip = "145.52.154.211";
+    public static final String ip = "192.168.2.12";
     private SessionManager sessionManager;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
