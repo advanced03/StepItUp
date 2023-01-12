@@ -81,7 +81,7 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
 
                 //horizontal shit
                 Button add = new Button(root.getContext());
-                add.setText(R.string.up);
+                add.setText("+");
                 add.setTag(R.id.cart_action, "add");
                 add.setTag(R.id.item_id, itemId);
                 add.setGravity(Gravity.CENTER);
@@ -103,7 +103,7 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
                 remove.setPadding(0, 0, 0, 0);
                 remove.setMinWidth(0);
                 remove.setMinHeight(0);
-                remove.setText(R.string.down);
+                remove.setText("-");
                 remove.setGravity(Gravity.CENTER);
                 remove.setTextAppearance(androidx.appcompat.R.style.TextAppearance_AppCompat_Subhead);
                 remove.setOnClickListener(this);
