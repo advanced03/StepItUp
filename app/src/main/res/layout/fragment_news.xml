@@ -22,7 +22,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fewjlfewjfewjf ewfew"
+                    android:text="Welkom!"
                     android:textAppearance="@style/TextAppearance.Material3.TitleLarge">
 
                 </TextView>
@@ -36,7 +36,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum"
+                    android:text="U hebt het eerste STAP genomen om uw leven te verbeteren! Verzamel punten en krijg geweldige prijzen met dit app!"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1">
 
                 </TextView>
