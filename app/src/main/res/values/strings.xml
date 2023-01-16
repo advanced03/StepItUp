@@ -12,6 +12,10 @@
     <string name="welkom">Welkom! %1$s</string>
     <string name="steps">Stappen: %1$d</string>
     <string name="date">%1$s</string>
+    <string name="username">Gebruikersnaam: %1$s</string>
+    <string name="email">Email: %1$s</string>
+    <string name="punten">Punten: %1$d</string>
+    <string name="stappen">Stappen: %1$d</string>
     <string name="kilometers">%1$s</string>
     <string name="cal">%1$s</string>
     <!-- TODO: Remove or change this placeholder text -->

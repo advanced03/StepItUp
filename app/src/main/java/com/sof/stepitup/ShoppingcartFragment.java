@@ -163,7 +163,7 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
         }
         else {
             TextView emptyText = new TextView(root.getContext());
-            emptyText.setText("Niks te zien hier...");
+            emptyText.setText("Er zitten geen producten in de winkelwagen!");
             emptyText.setGravity(Gravity.CENTER);
             emptyText.setTextAppearance(androidx.appcompat.R.style.TextAppearance_AppCompat_Title);
             l.addView(emptyText);

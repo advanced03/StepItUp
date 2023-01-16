@@ -41,16 +41,6 @@ public class HomeFragment extends Fragment {
 //        zet username in welkom
 //        String welcomeText = getString(R.string.welkom, sessionManager.getUserInfo()[1]);
 //        welcome.setText(welcomeText);
-
-        //gewoon logout
-        Button logout = (Button) root.findViewById(R.id.logout);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sessionManager.logoutUser();
-//                finish();
-            }
-        });
         //query voor user data
         String[] field = new String[1];
         field[0] = "user_ID";
@@ -65,8 +55,8 @@ public class HomeFragment extends Fragment {
                     JSONObject user = new JSONObject(result);
                     int userSteps = user.getInt("stappen");
                     sessionManager.updatePoints(user.getInt("punten"));
-                    String a = getString(R.string.steps, userSteps);
-                    steps.setText(a);
+                    String dbSteps = getString(R.string.steps, userSteps);
+                    steps.setText(dbSteps);
 
                     String totalCal = String.format("%.1f", userSteps*0.4);
                     String cal = getString(R.string.cal, totalCal); //elke stap is .4 cal
