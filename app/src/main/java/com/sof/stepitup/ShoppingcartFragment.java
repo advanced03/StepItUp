@@ -1,6 +1,5 @@
 package com.sof.stepitup;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -20,9 +19,6 @@ import android.widget.Toast;
 import com.sof.stepitup.session.SessionManager;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -34,8 +30,7 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
     private int points;
     private int total;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_shoppingcart, container, false);
         LinearLayout l = root.findViewById(R.id.baseLinearLayout);
 
@@ -56,6 +51,7 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
 
                 LinearLayout layoutInsideCardHorizontal = new LinearLayout(root.getContext());
                 layoutInsideCardHorizontal.setOrientation(LinearLayout.HORIZONTAL);
+
                 int itemId = (int) (double) item.get("id");
                 total += (int)(double) item.get("amount") * (int)(double) item.get("price");
                 String itemName = (String) item.get("name");
@@ -88,7 +84,6 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
                 totalTxt.setTextColor(Color.parseColor("#666666"));
                 totalTxt.setText("Totaal: " +(itemPrice*itemAmount));
 
-                //horizontal shit
                 Button add = new Button(root.getContext());
                 add.setText("+");
                 add.setTag(R.id.cart_action, "add");

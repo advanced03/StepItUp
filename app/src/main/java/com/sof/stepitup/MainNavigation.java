@@ -15,11 +15,11 @@ import com.sof.stepitup.session.SessionManager;
 public class MainNavigation extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
-    Intent intent;
     HomeFragment homeFragment = new HomeFragment();
     NewsFragment newsFragment = new NewsFragment();
     ShopFragment shopFragment = new ShopFragment();
     RankFragment rankFragment = new RankFragment();
+    PurchasesFragment purchasesFragment = new PurchasesFragment();
     NotificationFragment notificationFragment = new NotificationFragment();
     ShoppingcartFragment shoppingcartFragment = new ShoppingcartFragment();
     ProfileFragment profileFragment = new ProfileFragment();
@@ -42,18 +42,22 @@ public class MainNavigation extends AppCompatActivity {
 
                 switch (item.getItemId()) {
                     case R.id.menu_home:
+                        getSupportFragmentManager().popBackStack();
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, homeFragment).commit();
                         return true;
 
                     case R.id.menu_news:
+                        getSupportFragmentManager().popBackStack();
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, newsFragment).commit();
                         return true;
 
                     case R.id.menu_shopping:
+                        getSupportFragmentManager().popBackStack();
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, shopFragment).commit();
                         return true;
 
                     case R.id.menu_rank:
+                        getSupportFragmentManager().popBackStack();
                         getSupportFragmentManager().beginTransaction().replace(R.id.container, rankFragment).commit();
                         return true;
                 }
@@ -73,17 +77,24 @@ public class MainNavigation extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_notifications:
+                getSupportFragmentManager().popBackStack();
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, notificationFragment).commit();
                 return true;
             case R.id.menu_shoppingcart:
+                getSupportFragmentManager().popBackStack();
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, shoppingcartFragment).commit();
                 return true;
             case R.id.menu_profile:
+                getSupportFragmentManager().popBackStack();
                 getSupportFragmentManager().beginTransaction().replace(R.id.container, profileFragment).commit();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void replaceFragments() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, purchasesFragment).addToBackStack("").commit();
     }
 }
 

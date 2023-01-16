@@ -3,6 +3,8 @@ package com.sof.stepitup;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.ListFragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -31,8 +33,7 @@ public class ProfileFragment extends Fragment implements AdapterView.OnItemClick
     String[] options = new String[]{"Aankopen", "Log uit"};
     public static final String ip = "192.168.2.12";
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
         sessionManager = new SessionManager(root.getContext(),"userSession");
 
@@ -106,7 +107,7 @@ public class ProfileFragment extends Fragment implements AdapterView.OnItemClick
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         switch (options[position]) {
             case "Aankopen":
-                System.out.println("bruh");
+                ((MainNavigation) getActivity()).replaceFragments();
                 break;
             case "Log uit":
                 sessionManager.logoutUser();

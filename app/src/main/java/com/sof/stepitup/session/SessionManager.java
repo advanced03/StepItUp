@@ -29,7 +29,6 @@ public class SessionManager {
     public static final String EMAIL = "email";
     public static final String ROLE = "role";
     public static final String POINTS = "points";
-//    public static final String STEPS = "steps";
 
     public SessionManager (Context context, String sessionName) {
         this.context = context;

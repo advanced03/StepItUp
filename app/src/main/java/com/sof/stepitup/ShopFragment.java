@@ -34,7 +34,7 @@ public class ShopFragment extends Fragment implements View.OnClickListener {
         TableLayout tableLayout = root.findViewById(R.id.table);
 
         String[] field = new String[1];
-        field[0] = "message";
+        field[0] = "userId";
         String[] data = new String[1];
         data[0] = "getAllProducts"; //random string
 
