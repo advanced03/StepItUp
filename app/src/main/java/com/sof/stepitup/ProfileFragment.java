@@ -60,15 +60,15 @@ public class ProfileFragment extends Fragment implements AdapterView.OnItemClick
                     JSONObject user = new JSONObject(result);
 
                     int userSteps = user.getInt("stappen");
-                    int userPoints = user.getInt("punten");
+                    double userPoints = user.getDouble("punten");
                     String userEmail = user.getString("email");
                     String username = user.getString("gebruikersnaam");
 
-                    sessionManager.updatePoints(user.getInt("punten"));
+                    sessionManager.updatePoints(user.getDouble("punten"));
                     String steps = getString(R.string.steps, userSteps);
                     stepsTxt.setText(steps);
-
-                    String points = getString(R.string.punten, userPoints);
+                    System.out.println(userPoints);
+                    String points = getString(R.string.punten, String.format("%.3f", userPoints));
                     pointsTxt.setText(points);
 
                     String email = getString(R.string.email, userEmail);

@@ -79,7 +79,7 @@ public class Login extends AppCompatActivity {
                                             String email = user.getString("email");
                                             String role = user.getString("rol");
                                             String points = user.getString("punten");
-                                            sessionManager.createLoginSession(Integer.parseInt(userId), username, email, role, Integer.parseInt(points));
+                                            sessionManager.createLoginSession(Integer.parseInt(userId), username, email, role, Double.parseDouble(points));
                                             Intent intent = new Intent(getApplicationContext(), MainNavigation.class);
                                             startActivity(intent);
                                             finish();

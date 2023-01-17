@@ -37,9 +37,9 @@ public class SessionManager {
         gson = new Gson();
     }
 
-    public void createLoginSession(int userId, String username, String email, String role, int points) {
+    public void createLoginSession(int userId, String username, String email, String role, double points) {
         editor.putInt(USER_ID, userId);
-        editor.putInt(POINTS, points);
+        editor.putString(POINTS, Double.toString(points));
         editor.putString(USERNAME, username);
         editor.putString(EMAIL, email);
         editor.putString(ROLE, role);
@@ -54,6 +54,9 @@ public class SessionManager {
 
     public void checkLogin() {
         if (!this.isLoggedIn()) {
+            editor.clear();
+            pref = context.getSharedPreferences("cartSession", 0);
+            pref.edit().clear().apply();
             Intent i = new Intent(context, Login.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -77,13 +80,13 @@ public class SessionManager {
         String username = pref.getString(USERNAME, "NO_USERNAME_FOUND");
         String email = pref.getString(EMAIL, "NO_EMAIL_FOUND");
         String role = pref.getString(ROLE, "NO_ROLE_FOUND");
-        int points = pref.getInt(POINTS, 0);
-
-        return new Object[]{id,username,email,role,points};
+        String points = pref.getString(POINTS, "0");
+        double doublePoints = Double.parseDouble(points);
+        return new Object[]{id,username,email,role,doublePoints};
     }
 
-    public void updatePoints(int databasePoints) {
-        editor.putInt(POINTS, databasePoints);
+    public void updatePoints(double databasePoints) {
+        editor.putString(POINTS, Double.toString(databasePoints));
         editor.commit();
     }
 

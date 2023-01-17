@@ -81,7 +81,7 @@
 
         <ProgressBar
             android:id="@+id/pBar"
-            style="?android:attr/progressBarStyleHorizontal"
+            style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:indeterminate="false"
@@ -98,29 +98,30 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="79dp"
-            android:layout_height="95dp"
+            android:layout_width="100dp"
+            android:layout_height="112dp"
             android:layout_marginTop="25dp"
             android:src="@drawable/ic_baseline_directions_run"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView3"
-            app:layout_constraintHorizontal_bias="0.522"
+            app:layout_constraintHorizontal_bias="0.272"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_goal"
-            app:layout_constraintVertical_bias="0.044"
+            app:layout_constraintVertical_bias="0.076"
             tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="79dp"
-            android:layout_height="92dp"
+            android:layout_width="100dp"
+            android:layout_height="112dp"
             android:layout_marginTop="28dp"
-            android:layout_marginEnd="80dp"
             android:src="@drawable/ic_baseline_local_fire_department"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.883"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_goal"
-            app:layout_constraintVertical_bias="0.044"
+            app:layout_constraintVertical_bias="0.066"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -129,13 +130,13 @@
             android:layout_height="25dp"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="km"
+            android:text="Km"
             android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/text_cal"
-            app:layout_constraintHorizontal_bias="0.524"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/text_walking_distance"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -149,8 +150,8 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.749"
+            app:layout_constraintEnd_toEndOf="@+id/imageView3"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/calories"
             app:layout_constraintVertical_bias="0.0" />
@@ -166,8 +167,8 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/calories"
-            app:layout_constraintHorizontal_bias="0.524"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -181,8 +182,8 @@
             android:textSize="15dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.749"
+            app:layout_constraintEnd_toEndOf="@+id/imageView3"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView3"
             app:layout_constraintVertical_bias="0.0" />

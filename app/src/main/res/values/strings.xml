@@ -14,7 +14,7 @@
     <string name="date">%1$s</string>
     <string name="username">Gebruikersnaam: %1$s</string>
     <string name="email">Email: %1$s</string>
-    <string name="punten">Punten: %1$d</string>
+    <string name="punten">Punten: %1$s</string>
     <string name="stappen">Stappen: %1$d</string>
     <string name="kilometers">%1$s</string>
     <string name="cal">%1$s</string>

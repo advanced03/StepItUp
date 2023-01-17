@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,7 @@ public class HomeFragment extends Fragment {
 //        zet username in welkom
 //        String welcomeText = getString(R.string.welkom, sessionManager.getUserInfo()[1]);
 //        welcome.setText(welcomeText);
-        //query voor user data
+//        query voor user data
         String[] field = new String[1];
         field[0] = "user_ID";
         String[] data = new String[1];
@@ -54,7 +55,7 @@ public class HomeFragment extends Fragment {
                     String result = putData.getResult();
                     JSONObject user = new JSONObject(result);
                     int userSteps = user.getInt("stappen");
-                    sessionManager.updatePoints(user.getInt("punten"));
+                    sessionManager.updatePoints(user.getDouble("punten"));
                     String dbSteps = getString(R.string.steps, userSteps);
                     steps.setText(dbSteps);
 
@@ -71,7 +72,12 @@ public class HomeFragment extends Fragment {
                     String today = getString(R.string.date, dateFormatted);
                     date.setText(today);
 
-                    progressBar.setProgress(userSteps);
+                    new Handler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressBar.setProgress(userSteps);
+                        }
+                    });
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

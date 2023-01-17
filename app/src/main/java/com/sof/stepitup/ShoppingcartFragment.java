@@ -26,7 +26,7 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
     public static final String ip = "192.168.137.1";
     private SessionManager sessionManager;
     private SessionManager userSessionManager;
-    private int points;
+    private double points;
     private int total;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
 
         sessionManager = new SessionManager(root.getContext(), "cartSession");
         userSessionManager = new SessionManager(root.getContext(), "userSession");
-        points = (int) userSessionManager.getUserInfo()[4];
+        points = (double) userSessionManager.getUserInfo()[4];
 
         ArrayList<HashMap<String, Object>> cart = sessionManager.getCart();
 
@@ -175,13 +175,15 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
         }
         else if(v.getTag(R.id.cart_action) == "buy") {
             //doe hier koop actie code
-            int leftoverPoints = points - total;
+            double leftoverPoints = points - total;
+            System.out.println("points: "+points);
+            System.out.println("leftoverPoints: "+leftoverPoints);
             if (leftoverPoints <= 0) {
                 Toast.makeText(v.getContext(), "Te weinig punten....", Toast.LENGTH_SHORT).show();
             }
             else {
                 String [] field = {"userId","cartArrayString","newPointBalance"};
-                String [] data = {Integer.toString((int) userSessionManager.getUserInfo()[0]), sessionManager.getStringifiedCart(),Integer.toString(leftoverPoints)};
+                String [] data = {Integer.toString((int) userSessionManager.getUserInfo()[0]), sessionManager.getStringifiedCart(), Double.toString(leftoverPoints)};
                 PutData putData = new PutData("http://" + ip + "/stepitup/checkout.php", "POST", field, data);
                 if (putData.startPut()) {
                     if (putData.onComplete()) {
@@ -191,7 +193,7 @@ public class ShoppingcartFragment extends Fragment implements View.OnClickListen
                             sessionManager.resetCart();
                             refreshFragment();
                         } else {
-                            System.out.println(result);
+                            Toast.makeText(v.getContext(), "Er is iets mis gegaan...", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
