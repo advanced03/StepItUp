@@ -21,7 +21,7 @@ import org.json.JSONException;
 import org.w3c.dom.Text;
 
 public class PurchasesFragment extends Fragment {
-    public static final String ip = "192.168.2.12";
+    public static final String ip = "192.168.137.1";
     CardView card;
     LinearLayout layoutInsideCardVertical;
     @Override

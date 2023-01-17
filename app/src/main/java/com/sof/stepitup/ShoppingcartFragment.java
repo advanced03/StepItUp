@@ -22,9 +22,8 @@ import com.vishnusivadas.advanced_httpurlconnection.PutData;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 public class ShoppingcartFragment extends Fragment implements View.OnClickListener{
-    public static final String ip = "192.168.2.12";
+    public static final String ip = "192.168.137.1";
     private SessionManager sessionManager;
     private SessionManager userSessionManager;
     private int points;

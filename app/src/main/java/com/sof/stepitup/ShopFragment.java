@@ -24,7 +24,7 @@ import java.util.HashMap;
 
 
 public class ShopFragment extends Fragment implements View.OnClickListener {
-    public static final String ip = "192.168.2.12";
+    public static final String ip = "192.168.137.1";
     private SessionManager sessionManager;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

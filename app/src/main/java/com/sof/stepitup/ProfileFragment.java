@@ -31,7 +31,7 @@ public class ProfileFragment extends Fragment implements AdapterView.OnItemClick
     ListView list;
     private SessionManager sessionManager;
     String[] options = new String[]{"Aankopen", "Log uit"};
-    public static final String ip = "192.168.2.12";
+    public static final String ip = "192.168.137.1";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
