@@ -9,4 +9,22 @@
     <string name="maak_account">Maak account</string>
     <string name="heb_je_al_een_account_log_dan_in">Heb je al een account? log dan in!</string>
     <string name="emailadres">Emailadres</string>
+    <string name="welkom">Welkom! %1$s</string>
+    <string name="steps">Stappen: %1$d</string>
+    <string name="date">%1$s</string>
+    <string name="username">Gebruikersnaam: %1$s</string>
+    <string name="email">Email: %1$s</string>
+    <string name="punten">Punten: %1$s</string>
+    <string name="stappen">Stappen: %1$d</string>
+    <string name="kilometers">%1$s</string>
+    <string name="cal">%1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="down">↓</string>
+    <string name="up">↑</string>
+    <string name="aankopen"><b>Aankopen</b></string>
+    <item name="name_of_product" type="id" />
+    <item name="price_of_product" type="id" />
+    <item name="cart_action" type="id" />
+    <item name="item_id" type="id" />
 </resources>

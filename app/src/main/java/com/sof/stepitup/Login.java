@@ -6,28 +6,34 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.sof.stepitup.session.SessionManager;
 import com.vishnusivadas.advanced_httpurlconnection.PutData;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Login extends AppCompatActivity {
-//REMINDER: SESSIONS KUNNEN GEMAAKT WORDEN VOOR ONTHOUDEN VAN LOGINS
-//Wireless LAN adapter Local Area Connection IP via hotspot
-    public static String ip = "192.168.137.1";
+    //Wireless LAN adapter Local Area Connection IP via hotspot
+    //Jordi's ethernet 192.168.2.12
+    // ctrl alt L == reformat code
+    public static final String ip = "145.52.155.202";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
+        SessionManager sessionManager = new SessionManager(getApplicationContext(),"userSession");
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress);
-        TextView username =(TextView) findViewById(R.id.user);
-        TextView password =(TextView) findViewById(R.id.password);
+        TextInputEditText username =(TextInputEditText) findViewById(R.id.usertxt);
+        TextInputEditText password =(TextInputEditText) findViewById(R.id.passwordtxt);
         TextView createAccount = (TextView) findViewById(R.id.noacc);
 
         createAccount.setOnClickListener(new View.OnClickListener() {
@@ -36,7 +42,6 @@ public class Login extends AppCompatActivity {
 //                Toast.makeText(getBaseContext(),"Workdskfsndf",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Login.this, CreateAcc.class);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -61,21 +66,33 @@ public class Login extends AppCompatActivity {
                             data[0] = username.getText().toString();
                             data[1] = password.getText().toString();
 //                            try {
-                            PutData putData = new PutData("http://"+ ip +"/stepitup/login.php", "POST", field, data);
-                                if (putData.startPut()) {
-                                    if (putData.onComplete()) {
-                                        progressBar.setVisibility(View.GONE);
-                                        String result = putData.getResult();
-                                        if (result.equals("Welkom!")) {
-                                            Intent intent = new Intent(getApplicationContext(), Home.class);
+                            PutData putData = new PutData("http://" + ip + "/stepitup/login.php", "POST", field, data);
+                            if (putData.startPut()) {
+                                if (putData.onComplete()) {
+                                    progressBar.setVisibility(View.GONE);
+                                    String result = putData.getResult();
+                                    if (!result.equals("Helaas is de combinatie onjuist") && !result.equals("Geen connectie met database...")) {
+                                        try {
+                                            JSONObject user = new JSONObject(result);
+                                            String userId = user.getString("gebruiker_ID");
+                                            String username = user.getString("gebruikersnaam");
+                                            String email = user.getString("email");
+                                            String role = user.getString("rol");
+                                            String points = user.getString("punten");
+                                            sessionManager.createLoginSession(Integer.parseInt(userId), username, email, role, Double.parseDouble(points));
+                                            Intent intent = new Intent(getApplicationContext(), MainNavigation.class);
                                             startActivity(intent);
                                             finish();
+//                                                Toast.makeText(getApplicationContext(), user.getString("gebruiker_ID"), Toast.LENGTH_SHORT).show();
+
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
                                         }
-                                        else {
-                                            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
-                                        }
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                                     }
                                 }
+                            }
 //                            }
 //                            catch(Exception error1) {
 //                                error1.printStackTrace();
